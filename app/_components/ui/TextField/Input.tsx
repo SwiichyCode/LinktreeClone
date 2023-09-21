@@ -34,6 +34,7 @@ export const Input = ({
   return (
     <div
       role="group"
+      tabIndex={0}
       className={clsx(
         "flex items-center gap-3 rounded-lg py-3 px-4 border cursor-text",
         isFocused && "border-input-focus shadow-input-focus",
@@ -46,6 +47,7 @@ export const Input = ({
         <Image role="icon" src={iconUrl} alt="icon" width={20} height={20} />
       )}
       <input
+        tabIndex={-1}
         className="w-full text-darkgrey caret-input focus:outline-none"
         {...register(name)}
         {...rest}
