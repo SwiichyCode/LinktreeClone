@@ -17,3 +17,13 @@ This application leverages the latest features of NextJS to deliver clean code a
 - **Zustand:** Utilizing Zustand for efficient state management within the application.
 
 This repository showcases best practices in building a modern and robust web application, focusing on maintainability, scalability, and delivering a great user experience.
+
+## Environment Variables
+
+You'll need to add the following environment variables to your project:
+
+```plaintext
+NEXT_PUBLIC_SUPABASE_URL=https://YourSupabaseURL.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
