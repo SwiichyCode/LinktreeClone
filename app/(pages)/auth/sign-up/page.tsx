@@ -1,5 +1,5 @@
 import { AuthCard } from "../_components/AuthCard";
-import { AuthCardWrapper } from "../_components/AuthCardWrapper";
+import { AuthCardWrapper } from "../_components/AuthCard/AuthCardWrapper";
 import { AuthForm } from "../_components/AuthForm";
 
 export default function SignupPage() {

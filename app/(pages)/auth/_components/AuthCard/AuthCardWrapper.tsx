@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { Logo } from "@/app/_components/ui/Logo";
 
 type Props = {
@@ -6,7 +7,12 @@ type Props = {
 
 export const AuthCardWrapper = ({ children }: Props) => {
   return (
-    <div className="w-full max-w-md flex flex-col items-center gap-12">
+    <div
+      className={clsx(
+        "w-full max-w-xs flex flex-col gap-16",
+        "sm:max-w-md sm:items-center sm:gap-12"
+      )}
+    >
       <Logo size="large" />
       {children}
     </div>

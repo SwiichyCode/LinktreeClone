@@ -48,7 +48,7 @@ export const Input = ({
       )}
       <input
         tabIndex={-1}
-        className="w-full text-darkgrey caret-input focus:outline-none"
+        className="w-full text-darkgrey caret-input bg-transparent focus:outline-none"
         {...register(name)}
         {...rest}
       />

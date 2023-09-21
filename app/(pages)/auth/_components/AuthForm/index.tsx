@@ -4,11 +4,13 @@ import { z } from "zod";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormAction } from "../_actions/FormAction";
-import { FormDataSchema, SigninDataSchema } from "../_schema";
+import { FormAction } from "../../_actions/FormAction";
+import { FormDataSchema, SigninDataSchema } from "../../_schema";
 import { TextField } from "@/app/_components/ui/TextField";
 import { Button } from "@/app/_components/ui/Button";
 import { AuthError } from "./AuthError";
+import { AuthFormLink } from "./AuthFormLink";
+import { AuthPasswordInfo } from "./AuthPasswordInfo";
 
 type Input = z.infer<typeof FormDataSchema>;
 
@@ -18,6 +20,7 @@ type Props = {
 
 export const AuthForm = ({ state }: Props) => {
   const [isPending, startTransition] = useTransition();
+  const isSignup = state === "signup";
 
   const {
     register,
@@ -53,7 +56,9 @@ export const AuthForm = ({ state }: Props) => {
       <TextField
         name="password"
         type="password"
-        placeholder="Enter your password"
+        placeholder={
+          isSignup ? "At least .8 characters" : "Enter your password"
+        }
         labelText="Password"
         iconUrl="/icon-password.svg"
         register={register}
@@ -61,11 +66,13 @@ export const AuthForm = ({ state }: Props) => {
         error={errors.password?.message}
       />
 
-      {state === "signup" && (
+      {isSignup && (
         <TextField
           name="confirm"
           type="password"
-          placeholder="Confirm your password"
+          placeholder={
+            isSignup ? "At least .8 characters" : "Enter your password"
+          }
           labelText="Confirm password"
           iconUrl="/icon-password.svg"
           register={register}
@@ -74,13 +81,16 @@ export const AuthForm = ({ state }: Props) => {
         />
       )}
 
+      {isSignup && <AuthPasswordInfo />}
       <AuthError />
 
       <Button
         type="submit"
         disabled={isPending}
-        text={state === "signup" ? "Create new account" : "Login"}
+        text={isSignup ? "Create new account" : "Login"}
       />
+
+      <AuthFormLink state={state} />
     </form>
   );
 };

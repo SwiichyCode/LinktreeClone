@@ -1,5 +1,4 @@
 import { AuthCardHeader } from "./AuthCardHeader";
-import { AuthCardFooter } from "./AuthCardFooter";
 
 type Props = {
   title: string;
@@ -8,12 +7,11 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const AuthCard = ({ title, subtitle, state, children }: Props) => {
+export const AuthCard = ({ title, subtitle, children }: Props) => {
   return (
-    <section className="w-full flex flex-col gap-10 bg-white rounded-xl p-10">
+    <section className="w-full flex flex-col gap-10 sm:bg-white rounded-xl sm:p-10">
       <AuthCardHeader title={title} subtitle={subtitle} />
       {children}
-      <AuthCardFooter state={state} />
     </section>
   );
 };

@@ -4,12 +4,12 @@ type Props = {
   state: "signin" | "signup";
 };
 
-export const AuthCardFooter = ({ state }: Props) => {
+export const AuthFormLink = ({ state }: Props) => {
   const isSignin = state === "signin";
 
   return (
-    <p className="text-center">
-      {isSignin ? "Don’t have an account?" : "Already have an account?"}{" "}
+    <p className="flex flex-wrap items-center gap-2 justify-center text-center">
+      {isSignin ? "Don’t have an account?" : "Already have an account?"}
       <Link
         className="text-purple"
         href={isSignin ? "/auth/sign-up" : "/auth/sign-in"}
