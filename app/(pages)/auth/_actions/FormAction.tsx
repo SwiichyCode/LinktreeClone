@@ -17,26 +17,25 @@ export const FormAction = async ({ formData, state }: Props) => {
 
   const requestUrl = new URL(url);
   const supabase = createServerActionClient({ cookies });
+  const isSignup = state === "signup";
 
-  const result =
-    state === "signup"
-      ? FormDataSchema.safeParse(formData)
-      : SigninDataSchema.safeParse(formData);
+  const result = isSignup
+    ? FormDataSchema.safeParse(formData)
+    : SigninDataSchema.safeParse(formData);
 
   if (result.success) {
-    const { error } =
-      state === "signup"
-        ? await supabase.auth.signUp({
-            email: result.data.email,
-            password: result.data.password,
-            options: {
-              emailRedirectTo: `${requestUrl.origin}/auth/callback`,
-            },
-          })
-        : await supabase.auth.signInWithPassword({
-            email: result.data.email,
-            password: result.data.password,
-          });
+    const { error } = isSignup
+      ? await supabase.auth.signUp({
+          email: result.data.email,
+          password: result.data.password,
+          options: {
+            emailRedirectTo: `${requestUrl.origin}/auth/callback`,
+          },
+        })
+      : await supabase.auth.signInWithPassword({
+          email: result.data.email,
+          password: result.data.password,
+        });
 
     if (error) {
       redirect(
@@ -44,7 +43,7 @@ export const FormAction = async ({ formData, state }: Props) => {
       );
     }
 
-    return state === "signup"
+    return isSignup
       ? redirect(
           `${requestUrl.origin}/auth/sign-in?message=Check your emails to continue the login process`
         )
