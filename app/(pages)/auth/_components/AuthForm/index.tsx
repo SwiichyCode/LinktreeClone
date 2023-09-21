@@ -8,7 +8,7 @@ import { FormAction } from "../../_actions/FormAction";
 import { FormDataSchema, SigninDataSchema } from "../../_schema";
 import { TextField } from "@/app/_components/ui/TextField";
 import { Button } from "@/app/_components/ui/Button";
-import { AuthError } from "./AuthError";
+import { AuthMessage } from "./AuthMessage";
 import { AuthFormLink } from "./AuthFormLink";
 import { AuthPasswordInfo } from "./AuthPasswordInfo";
 
@@ -82,7 +82,7 @@ export const AuthForm = ({ state }: Props) => {
       )}
 
       {isSignup && <AuthPasswordInfo />}
-      <AuthError />
+      <AuthMessage />
 
       <Button
         type="submit"

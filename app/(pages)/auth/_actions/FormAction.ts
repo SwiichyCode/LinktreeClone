@@ -45,7 +45,7 @@ export const FormAction = async ({ formData, state }: Props) => {
 
     return isSignup
       ? redirect(
-          `${requestUrl.origin}/auth/sign-in?message=Check your emails to continue the login process`
+          `${requestUrl.origin}/auth/sign-in?success=Check your emails to continue the login process`
         )
       : redirect(requestUrl.origin);
   }
