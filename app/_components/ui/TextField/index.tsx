@@ -1,7 +1,7 @@
 import { Label } from "./Label";
 import { Input } from "./Input";
 
-interface TextFieldProps extends React.HTMLAttributes<HTMLInputElement> {
+export interface TextFieldProps extends React.HTMLAttributes<HTMLInputElement> {
   name: string;
   type?: "text" | "email" | "password";
   placeholder: string;
