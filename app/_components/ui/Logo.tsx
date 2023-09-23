@@ -1,13 +1,20 @@
-import Image from "next/image";
+import clsx from "clsx";
+import Link from "next/link";
 
 type Props = {
-  size: "small" | "large";
+  forHeader?: boolean;
+  forAuth?: boolean;
 };
 
-export const Logo = ({ size = "large" }: Props) => {
-  return size === "large" ? (
-    <Image src="/logo-devlinks-large.svg" alt="Logo" width={200} height={200} />
-  ) : (
-    <Image src="/logo-devlinks-small.svg" alt="Logo" width={50} height={50} />
+export const Logo = ({ forHeader, forAuth }: Props) => {
+  return (
+    <Link
+      href={forHeader ? "/" : "/auth/sign-in"}
+      className={clsx(
+        "w-8 h-10 bg-logo-mobile bg-no-repeat bg-left md:w-52 md:bg-logo-desktop ",
+        forHeader && "absolute float-left top-2/4 -translate-y-2/4",
+        forAuth && "w-52 bg-logo-desktop"
+      )}
+    />
   );
 };

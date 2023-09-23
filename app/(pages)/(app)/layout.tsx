@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { Header } from "@/app/_components/layouts/Header";
 
 type Props = {
   children: React.ReactNode;
@@ -6,9 +6,8 @@ type Props = {
 
 export default function Layout({ children }: Props) {
   return (
-    <div
-      className={clsx("flex justify-center h-screen p-8", "sm:items-center")}
-    >
+    <div className="md:m-6">
+      <Header />
       {children}
     </div>
   );

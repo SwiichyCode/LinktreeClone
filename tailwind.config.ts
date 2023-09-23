@@ -12,11 +12,14 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "logo-mobile": "url('/logo-devlinks-small.svg')",
+        "logo-desktop": "url('/logo-devlinks-large.svg')",
       },
       backgroundColor: {
         primary: "#FAFAFA",
         purple: "#633CFF",
         "purple-hover": "#BEADFF",
+        "purple-hover-secondary": "#EFEBFF",
       },
       colors: {
         grey: "#737373",
