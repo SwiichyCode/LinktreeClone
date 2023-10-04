@@ -2,6 +2,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
+import { URL_CONSTANT } from "@/app/_constants/url.constant";
 
 export const LogoutAction = async () => {
   const url = process.env.NEXT_PUBLIC_SITE_URL!;
@@ -13,8 +14,10 @@ export const LogoutAction = async () => {
   const { error } = await supabase.auth.signOut();
 
   if (error) {
-    redirect(`${requestUrl.origin}/auth/sign-in?error=Unable to sign out`);
+    redirect(
+      `${requestUrl.origin + URL_CONSTANT.SIGN_IN}?error=Unable to sign out`
+    );
   }
 
-  return redirect(`${requestUrl.origin}/auth/sign-in`);
+  return redirect(`${requestUrl.origin + URL_CONSTANT.SIGN_IN}`);
 };

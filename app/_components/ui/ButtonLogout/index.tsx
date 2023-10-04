@@ -1,4 +1,4 @@
-import { LogoutAction } from "../_actions/LogoutAction";
+import { LogoutAction } from "@/app/_components/modules/auth/server/LogoutAction";
 import { ButtonLink } from "@/app/_components/ui/ButtonLink";
 
 export const ButtonLogout = () => {

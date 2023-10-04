@@ -16,5 +16,5 @@ const handleStyle = (from: Props["from"]) => {
 
 export const Logo = ({ from }: Props) => {
   const merged = clsx("bg-no-repeat", handleStyle(from));
-  return <Link href="/" className={merged} />;
+  return <Link href="/links" className={merged} />;
 };

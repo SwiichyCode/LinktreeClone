@@ -3,7 +3,11 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
-import { FormDataSchema, SigninDataSchema } from "../_schema";
+import {
+  FormDataSchema,
+  SigninDataSchema,
+} from "../components/AuthForm/schema";
+import { URL_CONSTANT } from "@/app/_constants/url.constant";
 
 type Input = z.infer<typeof FormDataSchema>;
 
@@ -29,7 +33,7 @@ export const FormAction = async ({ formData, state }: Props) => {
           email: result.data.email,
           password: result.data.password,
           options: {
-            emailRedirectTo: `${requestUrl.origin}/auth/callback`,
+            emailRedirectTo: requestUrl.origin + URL_CONSTANT.AUTH_CALLBACK,
           },
         })
       : await supabase.auth.signInWithPassword({
@@ -39,15 +43,19 @@ export const FormAction = async ({ formData, state }: Props) => {
 
     if (error) {
       redirect(
-        `${requestUrl.origin}/auth/sign-in?error=Unable to authenticate user`
+        `${
+          requestUrl.origin + URL_CONSTANT.SIGN_IN
+        }?error=Unable to authenticate user`
       );
     }
 
     return isSignup
       ? redirect(
-          `${requestUrl.origin}/auth/sign-in?success=Check your emails to continue the login process`
+          `${
+            requestUrl.origin + URL_CONSTANT.SIGN_IN
+          }?success=Check your emails to continue the login process`
         )
-      : redirect(requestUrl.origin);
+      : redirect(requestUrl.origin + URL_CONSTANT.LINKS);
   }
 
   if (result.error) {

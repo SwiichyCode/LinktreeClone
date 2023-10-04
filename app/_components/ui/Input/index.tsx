@@ -21,7 +21,7 @@ export const Input = (props: InputProps) => {
         tabIndex={0}
         className={clsx(
           "h-[48px] w-full rounded-lg border text-darkgrey bg-transparent caret-input pl-11 pr-4",
-          "focus:outline-[#633CFF] focus:outline-1 focus:shadow-input-focus",
+          "focus:outline-[#633CFF] focus:outline-1 focus:shadow-input-focus focus:border-none",
           error ? "border-error" : "border-input"
         )}
         {...register(props.name)}
