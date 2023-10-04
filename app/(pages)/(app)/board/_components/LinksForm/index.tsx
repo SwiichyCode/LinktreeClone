@@ -1,11 +1,12 @@
+import { FormContainer } from "@/app/_components/container/FormContainer";
 import { FormHeader } from "./FormHeader";
 import { Form } from "./Form";
 
 export const Links = () => {
   return (
-    <div>
+    <FormContainer>
       <FormHeader />
       <Form />
-    </div>
+    </FormContainer>
   );
 };

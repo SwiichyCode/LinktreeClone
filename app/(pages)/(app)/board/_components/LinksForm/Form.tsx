@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { LinksFormEmpty } from "./FormEmpty";
+import { EmptyLinks } from "@/app/_components/modules/links/components/FormEmpty";
 import { ButtonAdd } from "./ButtonAdd";
 import { ButtonSave } from "./ButtonSave";
 import { LinksList } from "../LinksList";
@@ -15,9 +15,8 @@ export type LinkType = {
 
 export const Form = () => {
   const { links, addEmptyLink, removeLink } = useStoreLink();
-  const emptyLinks = !links.length;
-
   const { register, handleSubmit, setFocus } = useForm();
+  const emptyLinks = !links.length;
 
   const onsubmit = handleSubmit((data) => {
     const dataWithId = data.links.map((link: any) => ({
@@ -28,19 +27,12 @@ export const Form = () => {
     console.log(dataWithId);
   });
 
-  console.log(links);
-
   return (
-    <form onSubmit={onsubmit}>
+    <form className="h-full" onSubmit={onsubmit}>
       <ButtonAdd addLink={addEmptyLink} />
-      {emptyLinks && <LinksFormEmpty />}
+      {emptyLinks && <EmptyLinks />}
 
-      <LinksList
-        links={links}
-        removeLink={removeLink}
-        register={register}
-        setFocus={setFocus}
-      />
+      <LinksList links={links} removeLink={removeLink} register={register} />
 
       <ButtonSave emptyLinks={emptyLinks} />
     </form>

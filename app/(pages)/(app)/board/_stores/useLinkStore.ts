@@ -9,18 +9,18 @@ type Link = {
 interface ILinkStore {
   links: Link[];
   setLink: (link: Link) => void;
-  addEmptyLink: () => void;
+  appendLink: () => void;
   removeLink: (platform: string) => void;
 }
 
-export const useStoreLink = create<ILinkStore>()((set) => ({
+export const useLinkStore = create<ILinkStore>()((set) => ({
   links: [],
   setLink: (link) =>
     set((state) => ({
       links: [...state.links, link],
     })),
 
-  addEmptyLink: () =>
+  appendLink: () =>
     set((state) => ({
       links: [
         ...state.links,

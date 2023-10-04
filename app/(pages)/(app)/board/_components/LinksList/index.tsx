@@ -5,10 +5,9 @@ type Props = {
   links: LinkType[];
   removeLink: (id: string) => void;
   register: any;
-  setFocus: any;
 };
 
-export const LinksList = ({ links, removeLink, register, setFocus }: Props) => {
+export const LinksList = ({ links, removeLink, register }: Props) => {
   return (
     <ul className="flex flex-col gap-6 my-6">
       {links.map((link, index) => (
@@ -18,7 +17,6 @@ export const LinksList = ({ links, removeLink, register, setFocus }: Props) => {
             link={link}
             removeLink={removeLink}
             register={register}
-            setFocus={setFocus}
           />
         </li>
       ))}

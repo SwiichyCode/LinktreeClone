@@ -8,22 +8,12 @@ type Props = {
   link: LinkType;
   removeLink: (id: string) => void;
   register: any;
-  setFocus: any;
 };
 
-export const LinksContent = ({
-  index,
-  link,
-  removeLink,
-  register,
-  setFocus,
-}: Props) => {
-  const [platform, setPlatform] = useState("Instagram");
-  const { platform: P } = link;
-
+export const LinksContent = ({ index, link, removeLink, register }: Props) => {
   return (
     <div className="flex flex-col gap-3 bg-primary rounded-xl p-5">
-      <LinkHeader index={index} removeLink={() => removeLink(P)} />
+      <LinkHeader index={index} removeLink={() => removeLink(link.id)} />
       <select
         className="w-full h-10 rounded-lg bg-primary"
         {...register(`links.${index}.platform`)}

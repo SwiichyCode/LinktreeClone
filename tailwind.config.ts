@@ -38,6 +38,10 @@ const config: Config = {
         "input-focus": "0px 0px 32px 0px rgba(99, 60, 255, 0.25)",
         active: "0px 0px 32px 0px rgba(99, 60, 255, 0.25)",
       },
+      minHeight: {
+        "board-mobile": "calc(100vh - 74px - 2rem)",
+        "board-desktop": "calc(100vh - 110px - 2.5rem)",
+      },
     },
   },
   plugins: [],
