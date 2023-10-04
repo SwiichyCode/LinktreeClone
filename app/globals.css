@@ -2,9 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* IMPORT */
+@import "./_components/ui/Button/style.css";
+
+/* RESET */
+button[type="submit"] {
+  @apply bg-[#633CFF];
+}
+
 /* APPLY */
 .heading {
-  @apply text-4xl text-darkgrey font-bold;
+  @apply text-2xl md:text-4xl text-darkgrey font-bold;
 }
 
 .transition {

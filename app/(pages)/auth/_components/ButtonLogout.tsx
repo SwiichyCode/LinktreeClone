@@ -1,10 +1,10 @@
-import { Button } from "@/app/_components/ui/Button";
 import { LogoutAction } from "../_actions/LogoutAction";
+import { ButtonLink } from "@/app/_components/ui/ButtonLink";
 
 export const ButtonLogout = () => {
   return (
     <form action={LogoutAction}>
-      <Button iconUrl="/icon-logout.svg" theme="secondary" text="Logout" />
+      <ButtonLink iconSrc="/icon-logout.svg" text="Logout" />
     </form>
   );
 };

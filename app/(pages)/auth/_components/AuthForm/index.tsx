@@ -25,7 +25,6 @@ export const AuthForm = ({ state }: Props) => {
   const {
     register,
     handleSubmit,
-    setFocus,
     formState: { errors },
   } = useForm<Input>({
     resolver: zodResolver(
@@ -50,7 +49,6 @@ export const AuthForm = ({ state }: Props) => {
         labelText="Email address"
         iconUrl="/icon-email.svg"
         register={register}
-        setFocus={setFocus}
         error={errors.email?.message}
       />
       <TextField
@@ -62,7 +60,6 @@ export const AuthForm = ({ state }: Props) => {
         labelText="Password"
         iconUrl="/icon-password.svg"
         register={register}
-        setFocus={setFocus}
         error={errors.password?.message}
       />
 
@@ -76,7 +73,6 @@ export const AuthForm = ({ state }: Props) => {
           labelText="Confirm password"
           iconUrl="/icon-password.svg"
           register={register}
-          setFocus={setFocus}
           error={errors.confirm?.message}
         />
       )}
@@ -84,11 +80,9 @@ export const AuthForm = ({ state }: Props) => {
       {isSignup && <AuthPasswordInfo />}
       <AuthMessage />
 
-      <Button
-        type="submit"
-        disabled={isPending}
-        text={isSignup ? "Create new account" : "Login"}
-      />
+      <Button type="submit" disabled={isPending}>
+        {isSignup ? "Create new account" : "Login"}
+      </Button>
 
       <AuthFormLink state={state} />
     </form>

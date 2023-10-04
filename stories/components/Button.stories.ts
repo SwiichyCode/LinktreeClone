@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button, ButtonProps } from "../../app/_components/ui/Button";
+import { Button } from "../../app/_components/ui/Button";
+import type { ButtonProps } from "../../app/_components/ui/Button/types";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -20,6 +21,6 @@ type Story = StoryObj<ButtonProps>;
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Primary: Story = {
   args: {
-    text: "Primary Button",
+    children: "Primary",
   },
 };

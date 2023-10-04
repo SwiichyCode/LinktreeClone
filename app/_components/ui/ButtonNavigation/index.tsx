@@ -11,7 +11,7 @@ type Props = {
   text: string;
 };
 
-export const ButtonLink = ({ href, iconUrl, text }: Props) => {
+export const ButtonNavigation = ({ href, iconUrl, text }: Props) => {
   const [active, setActive] = useState(false);
   const pathname = usePathname();
   const isCurrentPath = pathname === href;
@@ -29,7 +29,7 @@ export const ButtonLink = ({ href, iconUrl, text }: Props) => {
     >
       <Link
         href={href}
-        className="flex items-center justify-center gap-2 py-3 px-7"
+        className="h-[42px] md:h-[46px] flex items-center justify-center gap-2 px-7"
       >
         <Image src={imageUrl} width={20} height={20} alt="icon" />
         <span

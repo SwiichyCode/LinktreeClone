@@ -1,34 +1,28 @@
-import { Label } from "./Label";
-import { Input } from "./Input";
+import { Label } from "../Label";
+import { Input } from "../Input";
 
-export interface TextFieldProps extends React.HTMLAttributes<HTMLInputElement> {
-  name: string;
-  type?: "text" | "email" | "password";
-  placeholder: string;
+interface TextFieldOptions {
   labelText: string;
   iconUrl?: string;
   register: any;
-  setFocus: any;
   error: any;
 }
 
-export const TextField = ({
-  name,
-  labelText,
-  iconUrl,
-  register,
-  setFocus,
-  error,
-  ...rest
-}: TextFieldProps) => {
+export type InputProps = React.DetailedHTMLProps<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
+> &
+  TextFieldOptions;
+
+export const TextField = (props: InputProps) => {
+  const { labelText, iconUrl, register, error, ...rest } = props;
   return (
     <div className="flex flex-col gap-2">
-      <Label labelText={labelText} htmlFor={name} error={error} />
+      <Label labelText={labelText} htmlFor={props.name!} error={error} />
       <Input
-        name={name}
+        name={props.name!}
         iconUrl={iconUrl}
         register={register}
-        setFocus={setFocus}
         error={error}
         {...rest}
       />

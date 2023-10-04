@@ -13,7 +13,7 @@ export const AuthCardWrapper = ({ children }: Props) => {
         "sm:max-w-md sm:items-center sm:gap-12"
       )}
     >
-      <Logo forAuth />
+      <Logo from="auth" />
       {children}
     </div>
   );
