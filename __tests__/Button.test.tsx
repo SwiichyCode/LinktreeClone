@@ -23,3 +23,14 @@
 //     expect(buttonElement).toHaveClass("cursor-not-allowed");
 //   });
 // });
+
+import { render, screen } from "@testing-library/react";
+import { Button } from "@/app/_components/ui/Button";
+
+describe("Button", () => {
+  it("should render correctly", () => {
+    render(<Button>Test</Button>);
+    const buttonElement = screen.getByRole("button");
+    expect(buttonElement).toBeInTheDocument();
+  });
+});

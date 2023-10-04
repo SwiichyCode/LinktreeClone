@@ -79,3 +79,23 @@
 //     expect(inputWrapper).toHaveClass("border-error");
 //   });
 // });
+
+import { render, screen } from "@testing-library/react";
+import { TextField } from "@/app/_components/ui/TextField";
+
+describe("TextField", () => {
+  it("should render correctly", () => {
+    render(
+      <TextField
+        name="test"
+        labelText=""
+        placeholder=""
+        error={""}
+        register={() => {}}
+      />
+    );
+
+    const inputElement = screen.getByRole("textbox");
+    expect(inputElement).toBeInTheDocument();
+  });
+});
