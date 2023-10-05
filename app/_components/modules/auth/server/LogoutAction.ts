@@ -1,17 +1,13 @@
 "use server";
-import { cookies } from "next/headers";
+import Auth_service from "@/app/_services/auth.service";
 import { redirect } from "next/navigation";
-import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { URL_CONSTANT } from "@/app/_constants/url.constant";
 
 export const LogoutAction = async () => {
   const url = process.env.NEXT_PUBLIC_SITE_URL!;
-
   const requestUrl = new URL(url);
-  const supabase = createServerActionClient({
-    cookies,
-  });
-  const { error } = await supabase.auth.signOut();
+
+  const { error } = await Auth_service.signout();
 
   if (error) {
     redirect(

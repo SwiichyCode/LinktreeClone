@@ -35,9 +35,15 @@ const signin = async ({ email, password }: SigninType) => {
   return { error };
 };
 
+const signout = async () => {
+  const { error } = await supabase.auth.signOut();
+  return { error };
+};
+
 const Auth_service = {
   signup,
   signin,
+  signout,
 };
 
 export default Auth_service;
