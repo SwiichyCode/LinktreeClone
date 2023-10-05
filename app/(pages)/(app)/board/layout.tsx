@@ -1,3 +1,4 @@
+import { Preview } from "@/app/_components/layouts/Preview";
 import clsx from "clsx";
 
 type Props = {
@@ -8,10 +9,11 @@ export default function Layout({ children }: Props) {
   return (
     <main
       className={clsx(
-        "flex min-h-board-mobile rounded-xl bg-white m-4 p-6",
-        "md:min-h-board-desktop md:m-6 md:p-10"
+        "flex min-h-board-mobile gap-6 m-4",
+        "md:min-h-board-desktop md:m-6"
       )}
     >
+      <Preview />
       {children}
     </main>
   );

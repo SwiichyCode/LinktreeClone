@@ -1,13 +1,12 @@
 "use server";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
+import Auth_service from "@/app/_services/auth.service";
+import { URL_CONSTANT } from "@/app/_constants/url.constant";
 import {
   FormDataSchema,
   SigninDataSchema,
 } from "../components/AuthForm/schema";
-import { URL_CONSTANT } from "@/app/_constants/url.constant";
 
 type Input = z.infer<typeof FormDataSchema>;
 
@@ -18,9 +17,7 @@ type Props = {
 
 export const FormAction = async ({ formData, state }: Props) => {
   const url = process.env.NEXT_PUBLIC_SITE_URL!;
-
   const requestUrl = new URL(url);
-  const supabase = createServerActionClient({ cookies });
   const isSignup = state === "signup";
 
   const result = isSignup
@@ -29,14 +26,12 @@ export const FormAction = async ({ formData, state }: Props) => {
 
   if (result.success) {
     const { error } = isSignup
-      ? await supabase.auth.signUp({
+      ? await Auth_service.signup({
           email: result.data.email,
           password: result.data.password,
-          options: {
-            emailRedirectTo: requestUrl.origin + URL_CONSTANT.AUTH_CALLBACK,
-          },
+          requestUrl: requestUrl.origin + URL_CONSTANT.AUTH_CALLBACK,
         })
-      : await supabase.auth.signInWithPassword({
+      : await Auth_service.signin({
           email: result.data.email,
           password: result.data.password,
         });

@@ -1,3 +1,6 @@
+import { Heading } from "@/app/_components/ui/Heading";
+import { Paragraph } from "@/app/_components/ui/Paragraph";
+
 type Props = {
   title: string;
   subtitle: string;
@@ -6,8 +9,8 @@ type Props = {
 export const AuthCardHeader = ({ title, subtitle }: Props) => {
   return (
     <div className="flex flex-col gap-2">
-      <h1 className="heading">{title}</h1>
-      <p className="">{subtitle}</p>
+      <Heading as="h1">{title}</Heading>
+      <Paragraph>{subtitle}</Paragraph>
     </div>
   );
 };
