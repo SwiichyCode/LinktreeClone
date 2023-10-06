@@ -11,31 +11,28 @@ export const useFetchLink = () => {
   const { links, setLinks } = useLinkStore();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setStatus(FetchStatus.Loading);
-        const { data, error } = await Link_service.getLinks(
-          "877381de-9ba9-4cd3-b2fe-fbe04c07cc13"
-        );
-
-        if (error) {
-          throw new Error(error.message);
-        }
-
-        const response = data?.[0].links;
-        setLinks(response);
-        setStatus(FetchStatus.Success);
-      } catch (error) {
-        if (error instanceof Error) setError(error.message);
-        setStatus(FetchStatus.Error);
-      }
-    };
-
-    if (links?.length === 0) {
-      fetchData();
-    } else {
-      setStatus(FetchStatus.Success);
-    }
+    // const fetchData = async () => {
+    //   try {
+    //     setStatus(FetchStatus.Loading);
+    //     const { data, error } = await Link_service.getLinks(
+    //       "877381de-9ba9-4cd3-b2fe-fbe04c07cc13"
+    //     );
+    //     if (error) {
+    //       throw new Error(error.message);
+    //     }
+    //     const response = data?.[0].links;
+    //     setLinks(response);
+    //     setStatus(FetchStatus.Success);
+    //   } catch (error) {
+    //     if (error instanceof Error) setError(error.message);
+    //     setStatus(FetchStatus.Error);
+    //   }
+    // };
+    // if (links?.length === 0) {
+    //   fetchData();
+    // } else {
+    //   setStatus(FetchStatus.Success);
+    // }
   }, [setLinks]);
 
   return {
