@@ -16,7 +16,7 @@ export type FormValues = {
 export const FormLinks = () => {
   const links = useStore(useLinkStore, (state) => state.links);
   const { setLinks } = useLinkStore();
-  const { status, error } = useFetchLink();
+  const { error } = useFetchLink();
   const { control, register, handleSubmit, reset, watch } = useForm<FormValues>(
     {
       reValidateMode: "onChange",
@@ -29,10 +29,10 @@ export const FormLinks = () => {
   const values = watch("links");
 
   useEffect(() => {
-    if (status === "success") {
-      reset({ links: links });
-    }
-  }, [links, status]);
+    // if (status === "success") {
+    reset({ links: links });
+    // }
+  }, [links]);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     setLinks(data.links);
