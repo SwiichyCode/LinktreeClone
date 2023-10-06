@@ -13,7 +13,7 @@ export const useFetchLink = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setStatus(FetchStatus.Loading);
+        // setStatus(FetchStatus.Loading);
         // const { data, error } = await Link_service.getLinks(
         //   "877381de-9ba9-4cd3-b2fe-fbe04c07cc13"
         // );
