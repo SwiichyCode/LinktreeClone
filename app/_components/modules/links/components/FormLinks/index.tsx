@@ -7,27 +7,24 @@ import { FormEmpty } from "../FormEmpty";
 import type { Link } from "@/app/_stores/link.store";
 import { LinksGenerator } from "../LinksGenerator";
 import { useEffect, useMemo } from "react";
-import Hydrations from "@/app/_stores/useHydratation";
+import { useStore } from "zustand";
 
 export type FormValues = {
   links: Link[];
 };
 
 export const FormLinks = () => {
-  // useEffect(() => {
-  //   useLinkStore.persist.rehydrate();
-  // }, []);
-
-  const { links, setLinks } = useLinkStore();
+  const links = useStore(useLinkStore, (state) => state.links);
+  const { setLinks } = useLinkStore();
   const { status, error } = useFetchLink();
-  const { control, register, handleSubmit, reset, watch } = useForm<FormValues>(
-    {
-      reValidateMode: "onChange",
-      defaultValues: useMemo(() => {
-        return { links: links };
-      }, [links]),
-    }
-  );
+  const { control, register, handleSubmit, reset, watch } =
+    useForm<FormValues>();
+    // {
+    //   reValidateMode: "onChange",
+    //   defaultValues: useMemo(() => {
+    //     return { links: links };
+    //   }, [links]),
+    // }
 
   console.log("links", links);
 
