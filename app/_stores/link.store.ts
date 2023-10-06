@@ -20,7 +20,7 @@ export const useLinkStore = create<ILinkStore>()(
       setLinks: (links) => set(() => ({ links })),
     }),
     {
-      name: STORAGE_CONSTANT.LINK,
+      name: "link-store",
       skipHydration: true,
     }
   )
