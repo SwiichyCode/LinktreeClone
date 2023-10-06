@@ -1,4 +1,4 @@
-import { ButtonLogout } from "@/app/_components/ui/ButtonLogout";
+import { ButtonLogout } from "@/app/_components/modules/auth/components/ButtonLogout";
 import { ButtonLink } from "@/app/_components/ui/ButtonLink";
 import { URL_CONSTANT } from "@/app/_constants/url.constant";
 

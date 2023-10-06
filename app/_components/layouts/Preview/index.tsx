@@ -6,7 +6,7 @@ export const Preview = () => {
     <div
       className={clsx(
         "hidden bg-white rounded-xl",
-        "lg:flex lg:justify-center lg:items-center lg:min-w-[460px]"
+        "lg:flex lg:justify-center lg:items-center lg:min-w-[560px]"
       )}
     >
       <Image

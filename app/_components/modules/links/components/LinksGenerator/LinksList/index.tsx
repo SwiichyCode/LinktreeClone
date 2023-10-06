@@ -1,8 +1,8 @@
 import { LinksContent } from "../LinksContent";
-import { LinkType } from "../LinksForm/Form";
+import type { Link } from "@/app/_stores/link.store";
 
 type Props = {
-  links: LinkType[];
+  links: Link[];
   removeLink: (id: string) => void;
   register: any;
 };

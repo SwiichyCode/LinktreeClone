@@ -6,6 +6,7 @@ type Props = {
   href?: string;
   iconSrc?: string;
   text: string;
+  onClick?: () => void;
 };
 
 type HandleLinkProps = {

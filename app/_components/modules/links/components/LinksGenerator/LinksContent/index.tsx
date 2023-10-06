@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { LinkType } from "../LinksForm/Form";
+import type { Link } from "@/app/_stores/link.store";
 import { LinkHeader } from "./LinkHeader";
 import { LinkUrl } from "./LinkUrl";
 
 type Props = {
   index: number;
-  link: LinkType;
+  link: Link;
   removeLink: (id: string) => void;
   register: any;
 };

@@ -5,7 +5,7 @@ interface TextFieldOptions {
   labelText: string;
   iconUrl?: string;
   register: any;
-  error: any;
+  error?: any;
 }
 
 export type InputProps = React.DetailedHTMLProps<
