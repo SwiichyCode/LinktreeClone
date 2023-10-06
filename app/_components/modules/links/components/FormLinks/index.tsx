@@ -7,7 +7,7 @@ import { FormEmpty } from "../FormEmpty";
 import type { Link } from "@/app/_stores/link.store";
 import { LinksGenerator } from "../LinksGenerator";
 import { useEffect, useMemo } from "react";
-import { useStore } from "zustand";
+import { useStore } from "@/app/_stores/useStore";
 
 export type FormValues = {
   links: Link[];
