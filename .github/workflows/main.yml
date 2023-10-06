@@ -1,7 +1,7 @@
 name: Pull Request CI
 on: push
 env:
-  CI: true
+  CI: false
   NEXT_TELEMETRY_DISABLED: 1
 jobs:
   check-eslint:

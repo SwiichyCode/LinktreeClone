@@ -18,7 +18,7 @@ export const useFetchLink = () => {
           "877381de-9ba9-4cd3-b2fe-fbe04c07cc13"
         );
         if (error) {
-          throw Error(error.message);
+          throw new Error(error.message);
         }
         const response = data?.[0].links;
         setLinks(response);
