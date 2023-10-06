@@ -19,14 +19,12 @@ export const FormLinks = () => {
   const { status, error } = useFetchLink();
   const { control, register, handleSubmit, reset, watch } =
     useForm<FormValues>();
-    // {
-    //   reValidateMode: "onChange",
-    //   defaultValues: useMemo(() => {
-    //     return { links: links };
-    //   }, [links]),
-    // }
-
-  console.log("links", links);
+  // {
+  //   reValidateMode: "onChange",
+  //   defaultValues: useMemo(() => {
+  //     return { links: links };
+  //   }, [links]),
+  // }
 
   const values = watch("links");
 
@@ -45,11 +43,11 @@ export const FormLinks = () => {
       className="h-full flex flex-col justify-between"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <LinksGenerator control={control} register={register}>
+      {/* <LinksGenerator control={control} register={register}>
         {!links?.length && status === "success" && <FormEmpty />}
       </LinksGenerator>
 
-      <FormSave links={links} values={values} />
+      <FormSave links={links} values={values} /> */}
     </form>
   );
 };
