@@ -10,7 +10,7 @@ export default function LinksPage() {
         subtitle="Add/edit/remove links below and then share all your profiles with the
         world!"
       />
-      <FormLinks />
+      {/* <FormLinks /> */}
     </FormContainer>
   );
 }
