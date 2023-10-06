@@ -14,8 +14,8 @@ export type FormValues = {
 };
 
 export const FormLinks = () => {
-  const links = useStore(useLinkStore, (state) => state.links);
-  const { setLinks } = useLinkStore();
+  // const links = useStore(useLinkStore, (state) => state.links);
+  // const { setLinks } = useLinkStore();
   const { status, error } = useFetchLink();
   // const { control, register, handleSubmit, reset, watch } = useForm<FormValues>(
   //   {
@@ -35,7 +35,7 @@ export const FormLinks = () => {
   // }, [links, status]);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    setLinks(data.links);
+    // setLinks(data.links);
   };
 
   return (
