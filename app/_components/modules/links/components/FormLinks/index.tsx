@@ -14,7 +14,9 @@ export type FormValues = {
 };
 
 export const FormLinks = () => {
-  const hydratation = Hydrations();
+  useEffect(() => {
+    useLinkStore.persist.rehydrate();
+  }, []);
 
   const { links, setLinks } = useLinkStore();
   const { status, error } = useFetchLink();
