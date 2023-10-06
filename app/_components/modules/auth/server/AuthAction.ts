@@ -2,11 +2,12 @@
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import Auth_service from "@/app/_services/auth.service";
-import { URL_CONSTANT } from "@/app/_constants/url.constant";
 import {
   FormDataSchema,
   SigninDataSchema,
 } from "../components/AuthForm/schema";
+import { URL_CONSTANT } from "@/app/_constants/url.constant";
+import { MESSAGE_CONSTANT } from "@/app/_constants/message.constant";
 
 type Input = z.infer<typeof FormDataSchema>;
 
@@ -15,7 +16,7 @@ type Props = {
   state: "signin" | "signup";
 };
 
-export const FormAction = async ({ formData, state }: Props) => {
+export const AuthAction = async ({ formData, state }: Props) => {
   const url = process.env.NEXT_PUBLIC_SITE_URL!;
   const requestUrl = new URL(url);
   const isSignup = state === "signup";
@@ -38,17 +39,15 @@ export const FormAction = async ({ formData, state }: Props) => {
 
     if (error) {
       redirect(
-        `${
-          requestUrl.origin + URL_CONSTANT.SIGN_IN
-        }?error=Unable to authenticate user`
+        requestUrl.origin + URL_CONSTANT.SIGN_IN + MESSAGE_CONSTANT.SIGNIN_ERROR
       );
     }
 
     return isSignup
       ? redirect(
-          `${
-            requestUrl.origin + URL_CONSTANT.SIGN_IN
-          }?success=Check your emails to continue the login process`
+          requestUrl.origin +
+            URL_CONSTANT.SIGN_IN +
+            MESSAGE_CONSTANT.SIGNUP_SUCCESS
         )
       : redirect(requestUrl.origin + URL_CONSTANT.LINKS);
   }

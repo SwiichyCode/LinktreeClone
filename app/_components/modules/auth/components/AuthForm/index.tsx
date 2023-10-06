@@ -4,13 +4,15 @@ import { z } from "zod";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormAction } from "../../server/FormAction";
+import { AuthAction } from "../../server/AuthAction";
 import { FormDataSchema, SigninDataSchema } from "./schema";
 import { TextField } from "@/app/_components/ui/TextField";
 import { Button } from "@/app/_components/ui/Button";
-import { AuthMessage } from "./AuthMessage";
+import { FormMessage } from "../FormMessage";
 import { AuthFormLink } from "./AuthFormLink";
 import { AuthPasswordInfo } from "./AuthPasswordInfo";
+import Link from "next/link";
+import { URL_CONSTANT } from "@/app/_constants/url.constant";
 
 type Input = z.infer<typeof FormDataSchema>;
 
@@ -34,7 +36,7 @@ export const AuthForm = ({ state }: Props) => {
 
   const onSubmit = handleSubmit((data) => {
     startTransition(() => {
-      FormAction({
+      AuthAction({
         formData: data,
         state,
       });
@@ -51,17 +53,28 @@ export const AuthForm = ({ state }: Props) => {
         register={register}
         error={errors.email?.message}
       />
-      <TextField
-        name="password"
-        type="password"
-        placeholder={
-          isSignup ? "At least .8 characters" : "Enter your password"
-        }
-        labelText="Password"
-        iconUrl="/icon-password.svg"
-        register={register}
-        error={errors.password?.message}
-      />
+
+      <div className="flex flex-col gap-2">
+        <TextField
+          name="password"
+          type="password"
+          placeholder={
+            isSignup ? "At least .8 characters" : "Enter your password"
+          }
+          labelText="Password"
+          iconUrl="/icon-password.svg"
+          register={register}
+          error={errors.password?.message}
+        />
+        {!isSignup && (
+          <Link
+            href={URL_CONSTANT.RECOVERY}
+            className="w-fit text-sm font-medium text-purple"
+          >
+            Forgot password ?
+          </Link>
+        )}
+      </div>
 
       {isSignup && (
         <TextField
@@ -78,7 +91,7 @@ export const AuthForm = ({ state }: Props) => {
       )}
 
       {isSignup && <AuthPasswordInfo />}
-      <AuthMessage />
+      <FormMessage />
 
       <Button type="submit" disabled={isPending}>
         {isSignup ? "Create new account" : "Login"}

@@ -14,6 +14,14 @@ type SigninType = {
   password: string;
 };
 
+type RecoveryType = {
+  email: string;
+};
+
+type UpdatePasswordType = {
+  password: string;
+};
+
 const signup = async ({ email, password, requestUrl }: SignupType) => {
   const { error } = await supabase.auth.signUp({
     email,
@@ -40,10 +48,26 @@ const signout = async () => {
   return { error };
 };
 
+const resetPassword = async ({ email }: RecoveryType) => {
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: "http://localhost:3000/auth/callback?next=/auth/reset-password",
+  });
+  return { error };
+};
+
+const updatePassword = async ({ password }: UpdatePasswordType) => {
+  const { error } = await supabase.auth.updateUser({
+    password: password,
+  });
+  return { error };
+};
+
 const Auth_service = {
   signup,
   signin,
   signout,
+  resetPassword,
+  updatePassword,
 };
 
 export default Auth_service;

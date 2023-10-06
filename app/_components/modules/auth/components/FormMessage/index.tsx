@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useSearchParams } from "next/navigation";
 
-export const AuthMessage = () => {
+export const FormMessage = () => {
   const searchParams = useSearchParams();
   const success = searchParams.get("success");
   const error = searchParams.get("error");
