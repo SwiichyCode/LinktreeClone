@@ -14,8 +14,8 @@ export type FormValues = {
 };
 
 export const FormLinks = () => {
-  const links = useStore(useLinkStore, (state) => state.links);
-  const { setLinks } = useLinkStore();
+  // const links = useStore(useLinkStore, (state) => state.links);
+  const { links, setLinks } = useLinkStore();
   const { status, error } = useFetchLink();
   const { control, register, handleSubmit, reset, watch } = useForm<FormValues>(
     {
