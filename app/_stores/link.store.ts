@@ -20,9 +20,10 @@ export const useLinkStore = create<ILinkStore>()(
       setLinks: (links) => set(() => ({ links })),
     }),
     {
-      name: STORAGE_CONSTANT.LINK, // Nom du store pour la persistance
+      name: STORAGE_CONSTANT.LINK,
+      skipHydration: true,
     }
   )
-); 
+);
 
 export default useLinkStore;

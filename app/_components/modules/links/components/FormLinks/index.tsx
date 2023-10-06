@@ -7,15 +7,13 @@ import { FormEmpty } from "../FormEmpty";
 import type { Link } from "@/app/_stores/link.store";
 import { LinksGenerator } from "../LinksGenerator";
 import { useEffect, useMemo } from "react";
-import { useStore } from "@/app/_stores/useStore";
 
 export type FormValues = {
   links: Link[];
 };
 
 export const FormLinks = () => {
-  const links = useStore(useLinkStore, (state) => state.links);
-  const { setLinks } = useLinkStore();
+  const { links, setLinks } = useLinkStore();
 
   const { status, error } = useFetchLink();
   const { control, register, handleSubmit, reset, watch } = useForm<FormValues>(
