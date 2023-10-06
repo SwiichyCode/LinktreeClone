@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useStore } from "@/app/_stores/useStore";
 import { useLinkStore } from "@/app/_stores/link.store";
 import { getStatusString, FetchStatus } from "../_utils/getStatusString";
 import Link_service from "@/app/_services/link.service";
@@ -7,7 +6,6 @@ import Link_service from "@/app/_services/link.service";
 export const useFetchLink = () => {
   const [status, setStatus] = useState<FetchStatus>(FetchStatus.Idle);
   const [error, setError] = useState<string | null>(null);
-  // const links = useStore(useLinkStore, (state) => state.links);
   const { links, setLinks } = useLinkStore();
 
   useEffect(() => {
