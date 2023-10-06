@@ -14,9 +14,9 @@ export type FormValues = {
 };
 
 export const FormLinks = () => {
-  useEffect(() => {
-    useLinkStore.persist.rehydrate();
-  }, []);
+  // useEffect(() => {
+  //   useLinkStore.persist.rehydrate();
+  // }, []);
 
   const { links, setLinks } = useLinkStore();
   const { status, error } = useFetchLink();
@@ -28,6 +28,8 @@ export const FormLinks = () => {
       }, [links]),
     }
   );
+
+  console.log("links", links);
 
   const values = watch("links");
 

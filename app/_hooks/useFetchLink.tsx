@@ -29,11 +29,13 @@ export const useFetchLink = () => {
       }
     };
 
-    if (links.length === 0) {
-      fetchData();
-    } else {
-      setStatus(FetchStatus.Success);
-    }
+    fetchData();
+
+    // if (links.length === 0) {
+    //   fetchData();
+    // } else {
+    //   setStatus(FetchStatus.Success);
+    // }
   }, [setLinks]);
 
   return { status: getStatusString(status), error };
