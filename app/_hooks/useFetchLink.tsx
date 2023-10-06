@@ -31,7 +31,7 @@ export const useFetchLink = () => {
       }
     };
 
-    if (links.length === 0) {
+    if (links?.length === 0) {
       fetchData();
     } else {
       setStatus(FetchStatus.Success);
