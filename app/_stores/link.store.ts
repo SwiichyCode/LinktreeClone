@@ -45,5 +45,3 @@ export const useLinkStore = create<ILinkStore>((set) => ({
   links: [],
   setLinks: (links) => set(() => ({ links })),
 }));
-
-export default useLinkStore;
