@@ -17,22 +17,22 @@ export const FormLinks = () => {
   const links = useStore(useLinkStore, (state) => state.links);
   const { setLinks } = useLinkStore();
   const { status, error } = useFetchLink();
-  const { control, register, handleSubmit, reset, watch } = useForm<FormValues>(
-    {
-      reValidateMode: "onChange",
-      defaultValues: useMemo(() => {
-        return { links: links };
-      }, [links]),
-    }
-  );
+  // const { control, register, handleSubmit, reset, watch } = useForm<FormValues>(
+  //   {
+  //     reValidateMode: "onChange",
+  //     defaultValues: useMemo(() => {
+  //       return { links: links };
+  //     }, [links]),
+  //   }
+  // );
 
-  const values = watch("links");
+  // const values = watch("links");
 
-  useEffect(() => {
-    if (status === "success") {
-      reset({ links: links });
-    }
-  }, [links, status]);
+  // useEffect(() => {
+  //   if (status === "success") {
+  //     reset({ links: links });
+  //   }
+  // }, [links, status]);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     setLinks(data.links);
@@ -41,13 +41,13 @@ export const FormLinks = () => {
   return (
     <form
       className="h-full flex flex-col justify-between"
-      onSubmit={handleSubmit(onSubmit)}
+      // onSubmit={handleSubmit(onSubmit)}
     >
-      <LinksGenerator control={control} register={register}>
+      {/* <LinksGenerator control={control} register={register}>
         {!links?.length && status === "success" && <FormEmpty />}
       </LinksGenerator>
 
-      <FormSave links={links} values={values} />
+      <FormSave links={links} values={values} /> */}
     </form>
   );
 };
