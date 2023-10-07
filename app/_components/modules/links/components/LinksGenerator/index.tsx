@@ -1,16 +1,21 @@
-import React from "react";
-import { Control, useFieldArray, UseFormRegister } from "react-hook-form";
+import {
+  Control,
+  useFieldArray,
+  UseFormRegister,
+  FieldValues,
+} from "react-hook-form";
 import { ButtonAppend } from "./ButtonAppend";
-import { TextField } from "@/app/_components/ui/TextField";
+import { LinksContent } from "./LinkContent";
 import type { FormValues } from "../FormLinks";
 
 type Props = {
-  control: Control<any>;
-  register: UseFormRegister<any>;
+  control: Control<FormValues, "links">;
+  register: UseFormRegister<FormValues>;
   children: React.ReactNode;
 };
 
-export const LinksGenerator = ({ control, register, children }: Props) => {
+export const LinksGenerator = (props: Props) => {
+  const { control, register, children } = props;
   const { fields, append, remove } = useFieldArray<FormValues>({
     control: control,
     name: "links",
@@ -23,16 +28,13 @@ export const LinksGenerator = ({ control, register, children }: Props) => {
       <ul className="flex flex-col gap-6 my-6">
         {fields.map((field, index) => (
           <div key={field.id}>
-            <TextField
-              labelText="Link"
-              iconUrl="/icon-links-header.svg"
-              name={`links.${index}.url`}
+            <LinksContent
+              index={index}
+              link={field}
+              removeLink={() => remove(index)}
               register={register}
-              defaultValue={field.url}
+              control={control}
             />
-            <button type="button" onClick={() => remove(index)}>
-              Delete
-            </button>
           </div>
         ))}
       </ul>

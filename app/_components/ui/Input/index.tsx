@@ -20,11 +20,11 @@ export const Input = (props: InputProps) => {
       <input
         tabIndex={0}
         className={clsx(
-          "h-[48px] w-full rounded-lg border text-darkgrey bg-transparent caret-input pl-11 pr-4",
-          "focus:outline-[#633CFF] focus:outline-1 focus:shadow-input-focus focus:border-none",
+          "h-[48px] w-full rounded-lg border text-darkgrey bg-white caret-input pl-11 pr-4",
+          "hover:border-[#633CFF] hover:shadow-input-focus focus:outline-none focus:border-[#633CFF] focus:shadow-input-focus",
           error ? "border-error" : "border-input"
         )}
-        {...register(props.name)}
+        {...register(props.name as string)}
         {...rest}
       />
     </div>

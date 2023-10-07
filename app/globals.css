@@ -22,3 +22,16 @@ button[type="submit"] {
 body {
   @apply text-grey bg-primary;
 }
+
+.react-select__control {
+  min-height: 48px !important;
+  /* border-radius: 8px !important; */
+}
+
+.react-select__value-container {
+  padding: 0 16px !important;
+}
+
+.react-select__input-container {
+  color: black !important;
+}

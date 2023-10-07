@@ -1,10 +1,11 @@
+import { UseFormRegister } from "react-hook-form";
 import { Label } from "../Label";
 import { Input } from "../Input";
 
 interface TextFieldOptions {
   labelText: string;
   iconUrl?: string;
-  register: any;
+  register: UseFormRegister<any>;
   error?: any;
 }
 

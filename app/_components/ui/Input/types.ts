@@ -1,6 +1,8 @@
+import { UseFormRegister, FieldValues } from "react-hook-form";
+
 interface InputOptions {
   iconUrl?: string;
-  register: any;
+  register: UseFormRegister<FieldValues>;
   error: any;
 }
 

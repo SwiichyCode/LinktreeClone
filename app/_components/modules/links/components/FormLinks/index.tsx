@@ -1,13 +1,13 @@
 "use client";
+import { useEffect, useMemo } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useFetchLink } from "@/app/_hooks/useFetchLink";
 import { useLinkStore } from "@/app/_stores/link.store";
+import { useStore } from "@/app/_stores/useStore";
+import { LinksGenerator } from "../LinksGenerator";
 import { FormSave } from "../FormSave";
 import { FormEmpty } from "../FormEmpty";
 import type { Link } from "@/app/_stores/link.store";
-import { LinksGenerator } from "../LinksGenerator";
-import { useEffect, useMemo } from "react";
-import { useStore } from "@/app/_stores/useStore";
 
 export type FormValues = {
   links: Link[];
@@ -35,6 +35,7 @@ export const FormLinks = () => {
   }, [links]);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
+    console.log(data);
     setLinks(data.links);
   };
 
