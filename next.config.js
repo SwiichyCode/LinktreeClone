@@ -8,10 +8,11 @@ const nextConfig = {
       {
         source: "/",
         destination: "/board/links",
-        permanent: true,
+        permanent: false,
       },
     ];
   },
+  reactStrictMode: false,
 };
 
 module.exports = nextConfig;

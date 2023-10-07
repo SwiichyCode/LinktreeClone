@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { useLinkStore } from "@/app/_stores/link.store";
 import { getStatusString, FetchStatus } from "../_utils/getStatusString";
@@ -26,12 +28,12 @@ export const useFetchLink = () => {
         setStatus(FetchStatus.Error);
       }
     };
-    if (links?.length === 0) {
-      fetchData();
-    } else {
-      setStatus(FetchStatus.Success);
-    }
-  }, [setLinks]);
+    // if (links?.length === 0) {
+    fetchData();
+    // } else {
+    //   setStatus(FetchStatus.Success);
+    // }
+  }, []);
 
   return {
     status: getStatusString(status),

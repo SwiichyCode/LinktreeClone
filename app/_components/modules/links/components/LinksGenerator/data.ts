@@ -1,5 +1,3 @@
-import { Youtube } from "@/app/_components/icons/Youtube";
-
 export const options = [
   {
     value: "github",
