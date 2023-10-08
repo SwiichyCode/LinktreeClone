@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Select from "react-select";
+import { useAvailablePlatform } from "@/app/_hooks/useAvailablePlatform";
 import { selectOptions } from "../../modules/links/components/LinksGenerator/data";
 import { Link } from "@/app/_stores/link.store";
 import { CustomStyle } from "./styles";
@@ -12,6 +13,7 @@ type Props = {
 
 export const Dropdown = (props: Props) => {
   const { onChange, link, index } = props;
+  const availablePlatforms = useAvailablePlatform();
 
   return (
     <Select
@@ -21,7 +23,7 @@ export const Dropdown = (props: Props) => {
       defaultValue={
         selectOptions.find((option) => option.value === link.platform) || null
       }
-      options={selectOptions}
+      options={availablePlatforms}
       placeholder="Select platform"
       name={`link.${index}.platform`}
       classNamePrefix="react-select"

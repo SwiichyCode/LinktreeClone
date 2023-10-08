@@ -1,5 +1,7 @@
+import { v4 as uuidv4 } from "uuid";
+import type { UseFieldArrayAppend } from "react-hook-form";
+import { useAvailablePlatform } from "@/app/_hooks/useAvailablePlatform";
 import { Button } from "@/app/_components/ui/Button";
-import { UseFieldArrayAppend } from "react-hook-form";
 
 type Props = {
   append: UseFieldArrayAppend<any, "links">;
@@ -7,12 +9,13 @@ type Props = {
 
 export const ButtonAppend = (props: Props) => {
   const { append } = props;
+  const availablePlatforms = useAvailablePlatform();
 
   const handleClick = () => {
     append({
-      id: Math.random().toString(36).substr(2, 9),
+      id: uuidv4(),
       url: "",
-      platform: "youtube",
+      platform: availablePlatforms[0].value,
     });
   };
 

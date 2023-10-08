@@ -21,7 +21,7 @@ type Props = {
 export const FormLinks = ({ userId }: Props) => {
   const links = useStore(useLinkStore, (state) => state.links);
   const { setLinks } = useLinkStore();
-  const { linksPreview, setLinkPreviews } = usePreviewStore();
+  const { setLinkPreviews } = usePreviewStore();
   const { status, error } = useFetchLink({ userId });
   const { control, register, handleSubmit, reset, watch } = useForm<FormValues>(
     {
