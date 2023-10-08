@@ -17,6 +17,8 @@ type Props = {
 export const LinksContent = (props: Props) => {
   const { index, link, removeLink, register, control } = props;
 
+  console.log(link);
+
   return (
     <div className="flex flex-col gap-3 bg-primary rounded-xl p-5">
       <LinkHeader index={index} removeLink={removeLink} />
@@ -30,7 +32,7 @@ export const LinksContent = (props: Props) => {
       <TextField
         labelText="Link"
         iconUrl="/icon-links-header.svg"
-        placeholder="e.g. https://www.github.com/"
+        placeholder={`e.g. https://www.${link.platform}.com/`}
         name={`links.${index}.url`}
         register={register}
         defaultValue={link.url}
