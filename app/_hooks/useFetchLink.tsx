@@ -2,10 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { useLinkStore } from "@/app/_stores/link.store";
-import { getStatusString, FetchStatus } from "../_utils/getStatusString";
+import { getStatusString, FetchStatus } from "@/app/_utils/getStatusString";
 import Link_service from "@/app/_services/link.service";
 
-export const useFetchLink = () => {
+type Props = {
+  userId: string | undefined;
+};
+
+export const useFetchLink = ({ userId }: Props) => {
   const [status, setStatus] = useState<FetchStatus>(FetchStatus.Idle);
   const [error, setError] = useState<string | null>(null);
   const { links, setLinks } = useLinkStore();
@@ -14,9 +18,7 @@ export const useFetchLink = () => {
     const fetchData = async () => {
       try {
         setStatus(FetchStatus.Loading);
-        const { data, error } = await Link_service.getLinks(
-          "877381de-9ba9-4cd3-b2fe-fbe04c07cc13"
-        );
+        const { data, error } = await Link_service.getLinks(userId);
         if (error) {
           throw new Error(error.message);
         }
@@ -28,11 +30,12 @@ export const useFetchLink = () => {
         setStatus(FetchStatus.Error);
       }
     };
-    // if (links?.length === 0) {
-    fetchData();
-    // } else {
-    //   setStatus(FetchStatus.Success);
-    // }
+
+    if (links?.length === 0) {
+      fetchData();
+    } else {
+      setStatus(FetchStatus.Success);
+    }
   }, []);
 
   return {

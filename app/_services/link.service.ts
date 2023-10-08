@@ -2,10 +2,10 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 const supabase = createClientComponentClient();
 
-const getLinks = async (id: string) => {
+const getLinks = async (id: string | undefined) => {
   const { data, error } = await supabase
     .from("user")
-    .select(`links`)
+    .select(`id, links`)
     .eq("id", id);
 
   return { data, error };

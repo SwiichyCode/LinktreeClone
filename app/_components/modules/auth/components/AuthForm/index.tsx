@@ -1,8 +1,9 @@
 "use client";
 
 import { z } from "zod";
+import Link from "next/link";
 import { useTransition } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AuthAction } from "../../server/AuthAction";
 import { FormDataSchema, SigninDataSchema } from "./schema";
@@ -11,7 +12,6 @@ import { Button } from "@/app/_components/ui/Button";
 import { FormMessage } from "../FormMessage";
 import { AuthFormLink } from "./AuthFormLink";
 import { AuthPasswordInfo } from "./AuthPasswordInfo";
-import Link from "next/link";
 import { URL_CONSTANT } from "@/app/_constants/url.constant";
 
 type Input = z.infer<typeof FormDataSchema>;

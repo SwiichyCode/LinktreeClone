@@ -1,5 +1,6 @@
 "use server";
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 import { z } from "zod";
 import Auth_service from "@/app/_services/auth.service";
 import {
@@ -26,7 +27,7 @@ export const AuthAction = async ({ formData, state }: Props) => {
     : SigninDataSchema.safeParse(formData);
 
   if (result.success) {
-    const { error } = isSignup
+    const { data, error } = isSignup
       ? await Auth_service.signup({
           email: result.data.email,
           password: result.data.password,
@@ -41,6 +42,11 @@ export const AuthAction = async ({ formData, state }: Props) => {
       redirect(
         requestUrl.origin + URL_CONSTANT.SIGN_IN + MESSAGE_CONSTANT.SIGNIN_ERROR
       );
+    }
+
+    if (data && !isSignup) {
+      const cookieStore = cookies();
+      cookieStore.set("user_id", data?.user?.id as string);
     }
 
     return isSignup

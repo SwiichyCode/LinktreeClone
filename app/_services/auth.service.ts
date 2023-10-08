@@ -23,7 +23,7 @@ type UpdatePasswordType = {
 };
 
 const signup = async ({ email, password, requestUrl }: SignupType) => {
-  const { error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
@@ -31,16 +31,16 @@ const signup = async ({ email, password, requestUrl }: SignupType) => {
     },
   });
 
-  return { error };
+  return { data, error };
 };
 
 const signin = async ({ email, password }: SigninType) => {
-  const { error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
 
-  return { error };
+  return { data, error };
 };
 
 const signout = async () => {

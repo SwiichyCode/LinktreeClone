@@ -13,10 +13,14 @@ export type FormValues = {
   links: Link[];
 };
 
-export const FormLinks = () => {
+type Props = {
+  userId: string | undefined;
+};
+
+export const FormLinks = ({ userId }: Props) => {
   const links = useStore(useLinkStore, (state) => state.links);
   const { setLinks } = useLinkStore();
-  const { status, error } = useFetchLink();
+  const { status, error } = useFetchLink({ userId });
   const { control, register, handleSubmit, reset, watch } = useForm<FormValues>(
     {
       reValidateMode: "onChange",
