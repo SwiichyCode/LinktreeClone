@@ -8,6 +8,7 @@ import type { FormValues } from "../../FormLinks";
 type Props = {
   index: number;
   link: Link;
+
   removeLink: () => void;
   register: UseFormRegister<FormValues>;
   control: Control<FormValues, "links">;

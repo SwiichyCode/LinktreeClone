@@ -14,6 +14,7 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "logo-mobile": "url('/logo-devlinks-small.svg')",
         "logo-desktop": "url('/logo-devlinks-large.svg')",
+        "illustration-phone": "url('/illustration-phone-mockup.svg')",
       },
       backgroundColor: {
         primary: "#FAFAFA",

@@ -1,7 +1,13 @@
+"use client";
 import clsx from "clsx";
-import Image from "next/image";
+import { usePreviewStore } from "@/app/_stores/preview.store";
+import { PreviewMockup } from "./PreviewMockup";
+import { PreviewProfile } from "./PreviewProfile";
+import { PreviewLinks } from "./PreviewLinks";
 
 export const Preview = () => {
+  const { linksPreview } = usePreviewStore();
+
   return (
     <div
       className={clsx(
@@ -9,12 +15,11 @@ export const Preview = () => {
         "lg:flex lg:justify-center lg:items-center lg:min-w-[560px]"
       )}
     >
-      <Image
-        src="/illustration-phone-mockup.svg"
-        width={307}
-        height={631}
-        alt=""
-      />
+      <PreviewMockup>
+        <PreviewProfile />
+
+        <PreviewLinks linksPreview={linksPreview} />
+      </PreviewMockup>
     </div>
   );
 };

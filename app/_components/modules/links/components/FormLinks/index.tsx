@@ -3,6 +3,7 @@ import { useEffect, useMemo } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useFetchLink } from "@/app/_hooks/useFetchLink";
 import { useLinkStore } from "@/app/_stores/link.store";
+import { usePreviewStore } from "@/app/_stores/preview.store";
 import { useStore } from "@/app/_stores/useStore";
 import { LinksGenerator } from "../LinksGenerator";
 import { FormSave } from "../FormSave";
@@ -20,6 +21,7 @@ type Props = {
 export const FormLinks = ({ userId }: Props) => {
   const links = useStore(useLinkStore, (state) => state.links);
   const { setLinks } = useLinkStore();
+  const { linksPreview, setLinkPreviews } = usePreviewStore();
   const { status, error } = useFetchLink({ userId });
   const { control, register, handleSubmit, reset, watch } = useForm<FormValues>(
     {
@@ -31,6 +33,14 @@ export const FormLinks = ({ userId }: Props) => {
   );
 
   const values = watch("links");
+
+  useEffect(() => {
+    const subscription = watch((value) => {
+      setLinkPreviews(value.links as Link[]);
+    });
+
+    return () => subscription.unsubscribe();
+  }, [values]);
 
   useEffect(() => {
     if (status === "success") {

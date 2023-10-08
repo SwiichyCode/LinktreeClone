@@ -1,4 +1,4 @@
-export const options = [
+export const selectOptions = [
   {
     value: "github",
     label: "GitHub",

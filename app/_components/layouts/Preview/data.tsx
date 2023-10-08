@@ -1,0 +1,15 @@
+export const previewOptions = [
+  { value: "github", color: "#1A1A1A" },
+  { value: "frontendmentor", color: "#FFF" },
+  { value: "twitter", color: "#43B7E9" },
+  { value: "linkedin", color: "#2D68FF" },
+  { value: "youtube", color: "#EE3939" },
+  { value: "facebook", color: "#2442AC" },
+  { value: "twitch", color: "#EE3FC8" },
+  { value: "devto", color: "#333" },
+  { value: "codewars", color: "#8A1A50" },
+  { value: "freecodecamp", color: "#302267" },
+  { value: "gitlab", color: "#EB4925" },
+  { value: "hashnode", color: "#0330D1" },
+  { value: "stackoverflow", color: "#EC7100" },
+];

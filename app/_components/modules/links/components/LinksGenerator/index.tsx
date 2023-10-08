@@ -7,6 +7,7 @@ import {
 import { ButtonAppend } from "./ButtonAppend";
 import { LinksContent } from "./LinkContent";
 import type { FormValues } from "../FormLinks";
+import type { Link } from "@/app/_stores/link.store";
 
 type Props = {
   control: Control<FormValues, "links">;
