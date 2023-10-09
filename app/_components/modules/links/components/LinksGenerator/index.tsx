@@ -2,21 +2,21 @@ import {
   Control,
   useFieldArray,
   UseFormRegister,
-  FieldValues,
+  FieldErrors,
 } from "react-hook-form";
 import { ButtonAppend } from "./ButtonAppend";
 import { LinksContent } from "./LinkContent";
 import type { FormValues } from "../FormLinks";
-import type { Link } from "@/app/_stores/link.store";
 
 type Props = {
   control: Control<FormValues, "links">;
   register: UseFormRegister<FormValues>;
+  errors: FieldErrors<FormValues>;
   children: React.ReactNode;
 };
 
 export const LinksGenerator = (props: Props) => {
-  const { control, register, children } = props;
+  const { control, register, errors, children } = props;
   const { fields, append, remove } = useFieldArray<FormValues>({
     control: control,
     name: "links",
@@ -35,6 +35,7 @@ export const LinksGenerator = (props: Props) => {
               removeLink={() => remove(index)}
               register={register}
               control={control}
+              errors={errors}
             />
           </div>
         ))}

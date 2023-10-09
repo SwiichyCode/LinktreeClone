@@ -1,6 +1,8 @@
 "use client";
-import { useEffect, useMemo } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { z } from "zod";
+import { useState, useEffect, useMemo, useTransition } from "react";
+import { set, useForm, useWatch } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useFetchLink } from "@/app/_hooks/useFetchLink";
 import { useLinkStore } from "@/app/_stores/link.store";
 import { usePreviewStore } from "@/app/_stores/preview.store";
@@ -9,9 +11,13 @@ import { LinksGenerator } from "../LinksGenerator";
 import { FormSave } from "../FormSave";
 import { FormEmpty } from "../FormEmpty";
 import type { Link } from "@/app/_stores/link.store";
+import { FormDataSchema } from "./schema";
+import { UpdateLinkAction } from "../../server/UpdateLinkAction";
+
+type Input = z.infer<typeof FormDataSchema>;
 
 export type FormValues = {
-  links: Link[];
+  links: Input["links"];
 };
 
 type Props = {
@@ -19,20 +25,43 @@ type Props = {
 };
 
 export const FormLinks = ({ userId }: Props) => {
+  const [isPending, startTransition] = useTransition();
+  const [submitted, setSubmitted] = useState(false);
   const links = useStore(useLinkStore, (state) => state.links);
   const { setLinks } = useLinkStore();
   const { setLinkPreviews } = usePreviewStore();
   const { status, error } = useFetchLink({ userId });
-  const { control, register, handleSubmit, reset, watch } = useForm<FormValues>(
-    {
-      reValidateMode: "onChange",
-      defaultValues: useMemo(() => {
-        return { links: links };
-      }, [links]),
-    }
-  );
+  const {
+    control,
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: zodResolver(FormDataSchema),
+    reValidateMode: "onChange",
+    defaultValues: useMemo(() => {
+      return { links: links };
+    }, [links]),
+  });
 
-  const values = watch("links");
+  const onSubmit = handleSubmit((data) => {
+    startTransition(() => {
+      UpdateLinkAction({
+        formData: data,
+      });
+    });
+
+    setLinks(data.links);
+
+    !isPending && setSubmitted(true);
+  });
+
+  const values = useWatch({
+    control,
+    name: "links",
+  });
 
   useEffect(() => {
     const subscription = watch((value) => {
@@ -48,17 +77,9 @@ export const FormLinks = ({ userId }: Props) => {
     }
   }, [links]);
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
-    setLinks(data.links);
-  };
-
   return (
-    <form
-      className="h-full flex flex-col justify-between"
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <LinksGenerator control={control} register={register}>
+    <form className="h-full flex flex-col justify-between" onSubmit={onSubmit}>
+      <LinksGenerator control={control} register={register} errors={errors}>
         {!links?.length && status === "success" && <FormEmpty />}
       </LinksGenerator>
 

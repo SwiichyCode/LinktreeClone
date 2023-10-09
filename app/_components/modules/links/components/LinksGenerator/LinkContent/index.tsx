@@ -1,4 +1,9 @@
-import { Controller, Control, UseFormRegister } from "react-hook-form";
+import {
+  Controller,
+  Control,
+  UseFormRegister,
+  FieldErrors,
+} from "react-hook-form";
 import { LinkHeader } from "../LinkHeader";
 import { Dropdown } from "@/app/_components/ui/Dropdown";
 import { TextField } from "@/app/_components/ui/TextField";
@@ -12,12 +17,11 @@ type Props = {
   removeLink: () => void;
   register: UseFormRegister<FormValues>;
   control: Control<FormValues, "links">;
+  errors: FieldErrors<FormValues>;
 };
 
 export const LinksContent = (props: Props) => {
-  const { index, link, removeLink, register, control } = props;
-
-  console.log(link);
+  const { index, link, removeLink, register, control, errors } = props;
 
   return (
     <div className="flex flex-col gap-3 bg-primary rounded-xl p-5">
@@ -36,6 +40,7 @@ export const LinksContent = (props: Props) => {
         name={`links.${index}.url`}
         register={register}
         defaultValue={link.url}
+        error={errors.links?.[index]?.url?.message}
       />
     </div>
   );

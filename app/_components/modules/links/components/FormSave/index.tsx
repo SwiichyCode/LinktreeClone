@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "@/app/_components/ui/Button";
 import { Link } from "@/app/_stores/link.store";
 
@@ -9,14 +8,18 @@ type Props = {
 
 export const FormSave = ({ links, values }: Props) => {
   const checkIfValuesChanged = () => {
-    if (!values) return;
+    if (values?.length !== links?.length) {
+      return true;
+    }
 
-    return values.some((value, index) => {
+    const isEqual = values?.every((value, index) => {
       return (
-        value.url !== links?.[index]?.url ||
-        value.platform !== links?.[index]?.platform
+        value.url === links?.[index]?.url &&
+        value.platform === links?.[index]?.platform
       );
     });
+
+    return !isEqual;
   };
 
   return (

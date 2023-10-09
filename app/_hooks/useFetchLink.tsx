@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useLinkStore } from "@/app/_stores/link.store";
 import { getStatusString, FetchStatus } from "@/app/_utils/getStatusString";
-import Link_service from "@/app/_services/link.service";
+import Link_service from "@/app/_services/link.client.service";
 
 type Props = {
   userId: string | undefined;
