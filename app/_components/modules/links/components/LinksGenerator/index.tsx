@@ -18,15 +18,16 @@ type Props = {
 export const LinksGenerator = (props: Props) => {
   const { control, register, errors, children } = props;
   const { fields, append, remove } = useFieldArray<FormValues>({
+    rules: { maxLength: 5 },
     control: control,
     name: "links",
   });
 
   return (
     <div className="flex flex-col space-y-4">
-      <ButtonAppend append={append} />
+      <ButtonAppend append={append} fieldsLength={fields.length} />
 
-      <ul className="flex flex-col gap-6 my-6">
+      <ul className="flex flex-col gap-6 my-6 md:max-h-[440px] md:overflow-y-scroll">
         {fields.map((field, index) => (
           <div key={field.id}>
             <LinksContent

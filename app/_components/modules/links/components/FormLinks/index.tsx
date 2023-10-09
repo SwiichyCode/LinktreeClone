@@ -1,7 +1,7 @@
 "use client";
 import { z } from "zod";
 import { useState, useEffect, useMemo, useTransition } from "react";
-import { set, useForm, useWatch } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFetchLink } from "@/app/_hooks/useFetchLink";
 import { useLinkStore } from "@/app/_stores/link.store";
@@ -29,7 +29,7 @@ export const FormLinks = ({ userId }: Props) => {
   const [submitted, setSubmitted] = useState(false);
   const links = useStore(useLinkStore, (state) => state.links);
   const { setLinks } = useLinkStore();
-  const { setLinkPreviews } = usePreviewStore();
+  const { linksPreview, setLinkPreviews } = usePreviewStore();
   const { status, error } = useFetchLink({ userId });
   const {
     control,
@@ -80,10 +80,10 @@ export const FormLinks = ({ userId }: Props) => {
   return (
     <form className="h-full flex flex-col justify-between" onSubmit={onSubmit}>
       <LinksGenerator control={control} register={register} errors={errors}>
-        {!links?.length && status === "success" && <FormEmpty />}
+        {!linksPreview?.length && status === "success" && <FormEmpty />}
       </LinksGenerator>
 
-      <FormSave links={links} values={values} />
+      <FormSave links={links} linksPreview={linksPreview} values={values} />
     </form>
   );
 };

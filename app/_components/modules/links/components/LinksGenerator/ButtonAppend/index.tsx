@@ -5,13 +5,16 @@ import { Button } from "@/app/_components/ui/Button";
 
 type Props = {
   append: UseFieldArrayAppend<any, "links">;
+  fieldsLength: number;
 };
 
 export const ButtonAppend = (props: Props) => {
-  const { append } = props;
+  const { append, fieldsLength } = props;
   const availablePlatforms = useAvailablePlatform();
 
   const handleClick = () => {
+    if (fieldsLength >= 5) return;
+
     append({
       id: uuidv4(),
       url: "",

@@ -9,8 +9,8 @@ export default function Layout({ children }: Props) {
   return (
     <main
       className={clsx(
-        "flex min-h-board-mobile gap-6 m-4",
-        "md:min-h-board-desktop md:m-6"
+        "flex min-h-board-mobile max-h-board-mobile gap-6 m-4",
+        "md:min-h-board-desktop md:max-h-board-desktop md:m-6"
       )}
     >
       <Preview />

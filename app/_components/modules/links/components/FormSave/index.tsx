@@ -3,16 +3,17 @@ import { Link } from "@/app/_stores/link.store";
 
 type Props = {
   links: Link[] | undefined;
+  linksPreview: Link[] | undefined;
   values: Link[] | undefined;
 };
 
-export const FormSave = ({ links, values }: Props) => {
+export const FormSave = ({ links, linksPreview, values }: Props) => {
   const checkIfValuesChanged = () => {
     if (values?.length !== links?.length) {
       return true;
     }
 
-    const isEqual = values?.every((value, index) => {
+    const isEqual = values?.some((value, index) => {
       return (
         value.url === links?.[index]?.url &&
         value.platform === links?.[index]?.platform
@@ -27,7 +28,7 @@ export const FormSave = ({ links, values }: Props) => {
       <Button
         className="w-full md:w-fit"
         type="submit"
-        disabled={!links?.length || !checkIfValuesChanged()}
+        disabled={!linksPreview?.length || !checkIfValuesChanged()}
       >
         Save
       </Button>
