@@ -24,6 +24,10 @@ export const PreviewLinks = ({ linksPreview }: Props) => {
     return option?.label;
   };
 
+  const isFrontendMentor = (platform: string) => {
+    return platform === "frontendmentor";
+  };
+
   return (
     <div className="flex flex-col gap-5">
       {linksPreview?.map((link) => (
@@ -32,7 +36,12 @@ export const PreviewLinks = ({ linksPreview }: Props) => {
           className={clsx(
             "w-[237px] h-11 flex justify-between items-center rounded-lg px-4"
           )}
-          style={{ backgroundColor: handleBgColor(link.platform) }}
+          style={{
+            backgroundColor: handleBgColor(link.platform),
+            border: isFrontendMentor(link.platform)
+              ? "1px solid #D9D9D9"
+              : "none",
+          }}
         >
           <div className="flex items-center gap-2">
             <Image
@@ -41,11 +50,21 @@ export const PreviewLinks = ({ linksPreview }: Props) => {
               height={20}
               alt={`icon-${link.platform}`}
             />
-            <span className="text-white">{getLabelOptions(link.platform)}</span>
+            <span
+              className={clsx(
+                isFrontendMentor(link.platform) ? "text-darkgrey" : "text-white"
+              )}
+            >
+              {getLabelOptions(link.platform)}
+            </span>
           </div>
 
           <Image
-            src="/icon-arrow-right.svg"
+            src={
+              isFrontendMentor(link.platform)
+                ? "/icon-arrow-right-dark.svg"
+                : "/icon-arrow-right.svg"
+            }
             width={20}
             height={20}
             alt="arrow-right"
