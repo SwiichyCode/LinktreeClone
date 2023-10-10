@@ -19,12 +19,14 @@ const config: Config = {
       backgroundColor: {
         primary: "#FAFAFA",
         purple: "#633CFF",
+        darkgrey: "#333333",
         "purple-hover": "#BEADFF",
         "purple-hover-secondary": "#EFEBFF",
       },
       colors: {
         grey: "#737373",
         darkgrey: "#333333",
+        lightgrey: "#FAFAFA",
         purple: "#633CFF",
       },
       borderColor: {

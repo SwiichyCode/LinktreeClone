@@ -13,6 +13,7 @@ import { FormEmpty } from "../FormEmpty";
 import type { Link } from "@/app/_stores/link.store";
 import { FormDataSchema } from "./schema";
 import { UpdateLinkAction } from "../../server/UpdateLinkAction";
+import { Notification } from "@/app/_components/layouts/Notification";
 
 type Input = z.infer<typeof FormDataSchema>;
 
@@ -55,8 +56,9 @@ export const FormLinks = ({ userId }: Props) => {
     });
 
     setLinks(data.links);
+    setSubmitted(true);
 
-    !isPending && setSubmitted(true);
+    !isPending && setTimeout(() => setSubmitted(false), 3000);
   });
 
   const values = useWatch({
@@ -85,6 +87,13 @@ export const FormLinks = ({ userId }: Props) => {
       </LinksGenerator>
 
       <FormSave links={links} linksPreview={linksPreview} values={values} />
+
+      {submitted && (
+        <Notification
+          iconUrl="/icon-changes-saved.svg"
+          text="Your changes have been successfully saved!"
+        />
+      )}
     </form>
   );
 };
