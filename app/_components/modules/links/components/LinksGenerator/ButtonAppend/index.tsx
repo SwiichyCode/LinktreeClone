@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import type { UseFieldArrayAppend } from "react-hook-form";
 import { useAvailablePlatform } from "@/app/_hooks/useAvailablePlatform";
@@ -10,10 +11,15 @@ type Props = {
 
 export const ButtonAppend = (props: Props) => {
   const { append, fieldsLength } = props;
+  const [isMaxArrayLength, setIsMaxArrayLength] = useState(false);
   const availablePlatforms = useAvailablePlatform();
 
   const handleClick = () => {
-    if (fieldsLength >= 5) return;
+    if (fieldsLength >= 5) {
+      setIsMaxArrayLength(true);
+
+      return;
+    }
 
     append({
       id: uuidv4(),
@@ -22,12 +28,19 @@ export const ButtonAppend = (props: Props) => {
     });
   };
 
+  useEffect(() => {
+    if (fieldsLength < 5) {
+      setIsMaxArrayLength(false);
+    }
+  }, [fieldsLength]);
+
   return (
     <Button
       className="w-full"
       variant="secondary"
       type="button"
       onClick={handleClick}
+      disabled={isMaxArrayLength}
     >
       + Add new link
     </Button>

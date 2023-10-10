@@ -19,6 +19,7 @@ export const LinksGenerator = (props: Props) => {
   const { control, register, errors, children } = props;
   const { fields, append, remove } = useFieldArray<FormValues>({
     rules: { maxLength: 5 },
+
     control: control,
     name: "links",
   });
