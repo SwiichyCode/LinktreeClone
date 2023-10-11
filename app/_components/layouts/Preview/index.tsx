@@ -12,7 +12,7 @@ export const Preview = () => {
     <div
       className={clsx(
         "hidden bg-white rounded-xl",
-        "lg:flex lg:justify-center lg:items-center lg:min-w-[560px]"
+        "lg:flex lg:justify-center lg:items-center lg:min-w-[560px] md:max-h-board-desktop"
       )}
     >
       <PreviewMockup>

@@ -45,6 +45,10 @@ const config: Config = {
         "board-mobile": "calc(100vh - 74px - 2rem)",
         "board-desktop": "calc(100vh - 110px - 2.5rem)",
       },
+      maxHeight: {
+        "board-mobile": "calc(100vh - 74px - 2rem)",
+        "board-desktop": "calc(100vh - 110px - 2.5rem)",
+      },
     },
   },
   plugins: [],

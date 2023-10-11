@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import {
   Control,
   useFieldArray,
@@ -28,7 +29,7 @@ export const LinksGenerator = (props: Props) => {
     <div className="flex flex-col space-y-4">
       <ButtonAppend append={append} fieldsLength={fields.length} />
 
-      <ul className="flex flex-col gap-6 my-6 md:max-h-[440px] md:overflow-y-scroll">
+      <ul className={clsx("flex flex-col gap-6 my-6")}>
         {fields.map((field, index) => (
           <div key={field.id}>
             <LinksContent

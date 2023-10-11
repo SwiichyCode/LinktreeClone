@@ -81,7 +81,10 @@ export const FormLinks = ({ userId }: Props) => {
   }, [links]);
 
   return (
-    <form className="h-full flex flex-col justify-between" onSubmit={onSubmit}>
+    <form
+      className="h-full flex flex-col justify-between gap-6"
+      onSubmit={onSubmit}
+    >
       <LinksGenerator control={control} register={register} errors={errors}>
         {!linksPreview?.length && status === "success" && <FormEmpty />}
       </LinksGenerator>
