@@ -12,7 +12,7 @@ type Props = {
 export const useFetchData = ({ userId }: Props) => {
   const [status, setStatus] = useState<FetchStatus>(FetchStatus.Idle);
   const [error, setError] = useState<string | null>(null);
-  const { links, setLinks, setData } = useDataStore();
+  const { links, setData, setLinks, setProfile } = useDataStore();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,7 +45,7 @@ export const useFetchData = ({ userId }: Props) => {
     } else {
       setStatus(FetchStatus.Success);
     }
-  }, [setData]);
+  }, [links, userId, setData, setLinks, setProfile]);
 
   return {
     status: getStatusString(status),

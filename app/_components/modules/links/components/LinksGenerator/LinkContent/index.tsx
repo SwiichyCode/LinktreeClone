@@ -5,6 +5,7 @@ import {
   FieldErrors,
 } from "react-hook-form";
 import { LinkHeader } from "../LinkHeader";
+import { FormCard } from "@/app/_components/ui/Form/FormCard";
 import { Dropdown } from "@/app/_components/ui/Dropdown";
 import { TextField } from "@/app/_components/ui/TextField";
 import type { Link } from "@/app/_stores/data.store";
@@ -24,7 +25,7 @@ export const LinksContent = (props: Props) => {
   const { index, link, removeLink, register, control, errors } = props;
 
   return (
-    <div className="flex flex-col gap-3 bg-primary rounded-xl p-5">
+    <FormCard>
       <LinkHeader index={index} removeLink={removeLink} />
       <Controller
         control={control}
@@ -42,6 +43,6 @@ export const LinksContent = (props: Props) => {
         defaultValue={link.url}
         error={errors.links?.[index]?.url?.message}
       />
-    </div>
+    </FormCard>
   );
 };
