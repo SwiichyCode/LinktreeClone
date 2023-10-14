@@ -48,7 +48,7 @@ export const AuthAction = async ({ formData, state }: Props) => {
       const cookieStore = cookies();
       const oneDay = 24 * 60 * 60 * 1000;
       cookieStore.set("user_id", data?.user?.id as string, {
-        expires: Date.now() - oneDay,
+        expires: Date.now() + oneDay,
       });
     }
 
