@@ -87,7 +87,12 @@ export const FormLinks = ({ userId }: Props) => {
         {!linksPreview?.length && status === "success" && <FormEmpty />}
       </LinksGenerator>
 
-      <FormSave links={links} linksPreview={linksPreview} values={values} />
+      <FormSave
+        state="links"
+        links={links}
+        linksPreview={linksPreview}
+        linksValues={values}
+      />
 
       <Notification
         iconUrl="/icon-changes-saved.svg"

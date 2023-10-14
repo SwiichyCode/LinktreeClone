@@ -4,9 +4,14 @@ import { usePreviewStore } from "@/app/_stores/preview.store";
 import { PreviewMockup } from "./PreviewMockup";
 import { PreviewProfile } from "./PreviewProfile";
 import { PreviewLinks } from "./PreviewLinks";
+import { useStore } from "@/app/_stores/useStore";
 
 export const Preview = () => {
-  const { linksPreview } = usePreviewStore();
+  const linksPreview = useStore(usePreviewStore, (state) => state.linksPreview);
+  const profilePreview = useStore(
+    usePreviewStore,
+    (state) => state.profilePreview
+  );
 
   return (
     <div

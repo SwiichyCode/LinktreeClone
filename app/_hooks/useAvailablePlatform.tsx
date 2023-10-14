@@ -4,6 +4,8 @@ import { selectOptions } from "@/app/_components/modules/links/components/LinksG
 export const useAvailablePlatform = () => {
   const { linksPreview } = usePreviewStore();
 
+  if (!linksPreview?.length) return selectOptions;
+
   const availablePlatforms = selectOptions.filter(
     (option) => !linksPreview.some((link) => link.platform === option.value)
   );

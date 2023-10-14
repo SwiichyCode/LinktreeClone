@@ -25,7 +25,7 @@ export const useFetchData = ({ userId }: Props) => {
         const response = data?.[0];
         const links = response?.links;
         const profile = {
-          username: response?.firstname,
+          username: response?.username,
           firstname: response?.firstname,
           lastname: response?.lastname,
           email: response?.email,

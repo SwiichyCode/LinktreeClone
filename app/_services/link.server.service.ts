@@ -9,6 +9,16 @@ interface UpdateLinksType {
   links: Links[];
 }
 
+interface UpdateProfileType {
+  id: string | undefined;
+  profile: {
+    username: string;
+    firstname: string;
+    lastname: string;
+    email: string;
+  };
+}
+
 const updateLinks = async ({ id, links }: UpdateLinksType) => {
   const { data, error } = await supabase
     .from("user")
@@ -18,8 +28,23 @@ const updateLinks = async ({ id, links }: UpdateLinksType) => {
   return { data, error };
 };
 
+const updateProfile = async ({ id, profile }: UpdateProfileType) => {
+  const { data, error } = await supabase
+    .from("user")
+    .update({
+      username: profile.username,
+      firstname: profile.firstname,
+      lastname: profile.lastname,
+      email: profile.email,
+    })
+    .eq("id", id);
+
+  return { data, error };
+};
+
 const Link_service = {
   updateLinks,
+  updateProfile,
 };
 
 export default Link_service;

@@ -4,6 +4,7 @@ interface InputOptions {
   iconUrl?: string;
   register: UseFormRegister<FieldValues>;
   error: any;
+  isProfile?: boolean;
 }
 
 export type InputProps = React.DetailedHTMLProps<

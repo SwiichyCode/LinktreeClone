@@ -1,19 +1,29 @@
 import { Button } from "@/app/_components/ui/Button";
-import { Link } from "@/app/_stores/data.store";
+import type { Link, Profile } from "@/app/_stores/data.store";
 
 type Props = {
-  links: Link[] | undefined;
-  linksPreview: Link[] | undefined;
-  values: Link[] | undefined;
+  state: "links" | "profile";
+  links?: Link[] | undefined;
+  profile?: Profile | undefined;
+  linksPreview?: Link[] | undefined;
+  linksValues?: Link[] | undefined;
+  profileValues?: Profile | undefined;
 };
 
-export const FormSave = ({ links, linksPreview, values }: Props) => {
-  const checkIfValuesChanged = () => {
-    if (values?.length !== links?.length) {
+export const FormSave = ({
+  state,
+  links,
+  profile,
+  linksPreview,
+  linksValues,
+  profileValues,
+}: Props) => {
+  const checkIfLinksChanged = () => {
+    if (linksValues?.length !== links?.length) {
       return true;
     }
 
-    const isEqual = values?.some((value, index) => {
+    const isEqual = linksValues?.some((value, index) => {
       return (
         value.url === links?.[index]?.url &&
         value.platform === links?.[index]?.platform
@@ -23,12 +33,35 @@ export const FormSave = ({ links, linksPreview, values }: Props) => {
     return !isEqual;
   };
 
+  const checkIfProfileChanged = () => {
+    if (!profileValues || !profile) {
+      return false;
+    }
+
+    return (
+      profileValues.username === profile.username &&
+      profileValues.firstname === profile.firstname &&
+      profileValues.lastname === profile.lastname &&
+      profileValues.email === profile.email
+    );
+  };
+
+  const handleDisable = () => {
+    if (state === "links") {
+      return !linksPreview?.length || !checkIfLinksChanged();
+    }
+
+    if (state === "profile") {
+      return checkIfProfileChanged();
+    }
+  };
+
   return (
     <div className="flex justify-end border-t border-input py-4">
       <Button
         className="w-full md:w-fit"
         type="submit"
-        disabled={!linksPreview?.length || !checkIfValuesChanged()}
+        disabled={handleDisable()}
       >
         Save
       </Button>
