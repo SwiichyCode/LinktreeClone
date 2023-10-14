@@ -5,7 +5,12 @@ export const Label = (props: LabelProps) => {
   const { labelText, error, isProfile, ...rest } = props;
 
   return (
-    <div className="flex items-baseline justify-between">
+    <div
+      className={clsx(
+        "flex items-baseline justify-between",
+        isProfile && "gap-2"
+      )}
+    >
       <label
         className={clsx(
           "text-sm font-medium",

@@ -1,10 +1,10 @@
 "use client";
 import { z } from "zod";
 import { useState, useMemo, useTransition, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFetchData } from "@/app/_hooks/useFetchData";
-import { useDataStore } from "@/app/_stores/data.store";
+import { Profile, useDataStore } from "@/app/_stores/data.store";
 import { usePreviewStore } from "@/app/_stores/preview.store";
 import { useStore } from "@/app/_stores/useStore";
 import { UpdateProfileAction } from "../../server/UpdateProfileAction";
@@ -14,8 +14,9 @@ import { FormCard } from "@/app/_components/ui/Form/FormCard";
 import { TextField } from "@/app/_components/ui/TextField";
 import { FormSave } from "@/app/_components/ui/Form/FormSave";
 import { Notification } from "@/app/_components/ui/Notification";
+import { FormInformations } from "../FormInformations";
 
-type FormValues = z.infer<typeof FormDataSchema>;
+export type FormValues = z.infer<typeof FormDataSchema>;
 
 type Props = {
   userId: string | undefined;
@@ -55,58 +56,31 @@ export const FormProfile = ({ userId }: Props) => {
     !isPending && setTimeout(() => setSubmitted(false), 3000);
   });
 
+  const values = watch();
+
+  useEffect(() => {
+    const subscription = watch((value) => {
+      const profile = {
+        username: value.username,
+        firstname: value.firstname,
+        lastname: value.lastname,
+        email: value.email,
+      };
+      setProfilePreview(profile as Profile);
+    });
+
+    return () => subscription.unsubscribe();
+  }, [values]);
+
   useEffect(() => {
     if (status === "success") {
       reset(profile);
     }
   }, [profile]);
 
-  const values = watch();
-
   return (
     <FormWrapper onSubmit={onSubmit}>
-      <FormCard>
-        <TextField
-          labelText="Username*"
-          iconUrl="/icon-links-header.svg"
-          placeholder="Username*"
-          name="username"
-          register={register}
-          defaultValue={profile?.username}
-          error={errors?.username?.message}
-          isProfile
-        />
-        <TextField
-          labelText="First name*"
-          iconUrl="/icon-links-header.svg"
-          placeholder="First name*"
-          name="firstname"
-          register={register}
-          defaultValue={profile?.firstname}
-          error={errors?.firstname?.message}
-          isProfile
-        />
-        <TextField
-          labelText="Last name*"
-          iconUrl="/icon-links-header.svg"
-          placeholder="Last name*"
-          name="lastname"
-          register={register}
-          defaultValue={profile?.lastname}
-          error={errors?.lastname?.message}
-          isProfile
-        />
-        <TextField
-          labelText="Email"
-          iconUrl="/icon-links-header.svg"
-          placeholder="Email*"
-          name="email"
-          register={register}
-          defaultValue={profile?.email}
-          error={errors?.email?.message}
-          isProfile
-        />
-      </FormCard>
+      <FormInformations register={register} profile={profile} errors={errors} />
 
       <FormSave state="profile" profile={profile} profileValues={values} />
 

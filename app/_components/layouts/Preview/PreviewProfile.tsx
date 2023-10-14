@@ -1,12 +1,27 @@
-export const PreviewProfile = () => {
+import type { Profile } from "@/app/_stores/data.store";
+import { PreviewUsername } from "./PreviewUsername";
+import { PreviewEmail } from "./PreviewEmail";
+import { PreviewFullname } from "./PreviewFullname";
+import { PreviewPicture } from "./PreviewPicture";
+
+type Props = {
+  profilePreview: Profile | undefined;
+};
+
+export const PreviewProfile = ({ profilePreview }: Props) => {
+  const { username, firstname, lastname, email } = profilePreview || {};
+
+  const handleFullname = () => {
+    if (!firstname && !lastname) return "";
+
+    return `${firstname} ${lastname}`;
+  };
+
   return (
     <div className="flex flex-col items-center mb-14">
-      {/* Picture */}
-      <div className="w-24 h-24 bg-[#EEE] rounded-full mb-6" />
-      {/* FullName */}
-      <div className="w-40 h-4 bg-[#EEE] rounded-3xl mb-3" />
-      {/* Email */}
-      <div className="w-[72px] h-2 bg-[#EEE] rounded-3xl" />
+      <PreviewPicture />
+      <PreviewFullname fullname={handleFullname()} />
+      <PreviewEmail email={email} />
     </div>
   );
 };

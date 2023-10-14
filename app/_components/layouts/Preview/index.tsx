@@ -21,7 +21,7 @@ export const Preview = () => {
       )}
     >
       <PreviewMockup>
-        <PreviewProfile />
+        <PreviewProfile profilePreview={profilePreview && profilePreview} />
 
         <PreviewLinks linksPreview={linksPreview} />
       </PreviewMockup>
