@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import { Heading } from "@/app/_components/ui/Heading";
 import { Paragraph } from "@/app/_components/ui/Paragraph";

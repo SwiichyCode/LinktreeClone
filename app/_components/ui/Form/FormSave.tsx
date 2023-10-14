@@ -1,5 +1,5 @@
 import { Button } from "@/app/_components/ui/Button";
-import { Link } from "@/app/_stores/link.store";
+import { Link } from "@/app/_stores/data.store";
 
 type Props = {
   links: Link[] | undefined;

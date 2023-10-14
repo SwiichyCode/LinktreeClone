@@ -7,7 +7,7 @@ import {
 import { LinkHeader } from "../LinkHeader";
 import { Dropdown } from "@/app/_components/ui/Dropdown";
 import { TextField } from "@/app/_components/ui/TextField";
-import type { Link } from "@/app/_stores/link.store";
+import type { Link } from "@/app/_stores/data.store";
 import type { FormValues } from "../../FormLinks";
 
 type Props = {

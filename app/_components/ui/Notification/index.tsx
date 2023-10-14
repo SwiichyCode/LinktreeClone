@@ -4,9 +4,12 @@ import Image from "next/image";
 type Props = {
   text: string;
   iconUrl: string;
+  submited?: boolean;
 };
 
-export const Notification = ({ text, iconUrl }: Props) => {
+export const Notification = ({ text, iconUrl, submited }: Props) => {
+  if (!submited) return null;
+
   return (
     <div
       className={clsx(
