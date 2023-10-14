@@ -23,8 +23,8 @@ export const TextField = (props: InputProps) => {
   return (
     <div
       className={clsx(
-        "flex gap-2",
-        isProfile ? "flex-row items-center justify-between" : "flex-col"
+        "flex flex-col gap-2",
+        isProfile && "md:flex-row md:items-center md:justify-between"
       )}
     >
       <Label

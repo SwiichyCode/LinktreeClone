@@ -11,13 +11,7 @@ export const Label = (props: LabelProps) => {
         isProfile && "gap-2"
       )}
     >
-      <label
-        className={clsx(
-          "text-sm font-medium",
-          isProfile ? " text-grey" : "text-darkgrey"
-        )}
-        {...rest}
-      >
+      <label className="text-darkgrey text-sm font-medium" {...rest}>
         {labelText}
       </label>
 

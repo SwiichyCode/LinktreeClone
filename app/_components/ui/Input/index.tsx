@@ -9,8 +9,8 @@ export const Input = (props: InputProps) => {
     <div
       role="group"
       className={clsx(
-        "relative flex justify-end",
-        isProfile ? "w-2/3" : "w-full"
+        "w-full relative flex justify-end",
+        isProfile && "md:w-2/3"
       )}
     >
       {iconUrl && !isProfile && (
