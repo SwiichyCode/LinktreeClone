@@ -46,7 +46,10 @@ export const AuthAction = async ({ formData, state }: Props) => {
 
     if (data && !isSignup) {
       const cookieStore = cookies();
-      cookieStore.set("user_id", data?.user?.id as string);
+      const oneDay = 24 * 60 * 60 * 1000;
+      cookieStore.set("user_id", data?.user?.id as string, {
+        expires: Date.now() - oneDay,
+      });
     }
 
     return isSignup
