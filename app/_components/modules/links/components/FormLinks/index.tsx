@@ -96,8 +96,8 @@ export const FormLinks = ({ userId }: Props) => {
 
       <Notification
         iconUrl="/icon-changes-saved.svg"
-        text="Your changes have been successfully saved!"
-        submited={submitted}
+        message="Your changes have been successfully saved!"
+        submitted={submitted}
       />
     </FormWrapper>
   );

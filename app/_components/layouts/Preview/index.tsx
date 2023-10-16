@@ -1,12 +1,16 @@
 "use client";
-import clsx from "clsx";
 import { usePreviewStore } from "@/app/_stores/preview.store";
 import { PreviewMockup } from "./PreviewMockup";
 import { PreviewProfile } from "./PreviewProfile";
 import { PreviewLinks } from "./PreviewLinks";
 import { useStore } from "@/app/_stores/useStore";
+import { PreviewContainer } from "./PreviewContainer";
 
-export const Preview = () => {
+type Props = {
+  isPreview?: boolean;
+};
+
+export const Preview = ({ isPreview }: Props) => {
   const linksPreview = useStore(usePreviewStore, (state) => state.linksPreview);
   const profilePreview = useStore(
     usePreviewStore,
@@ -14,17 +18,18 @@ export const Preview = () => {
   );
 
   return (
-    <div
-      className={clsx(
-        "hidden bg-white rounded-xl",
-        "lg:flex lg:justify-center lg:items-center lg:min-w-[560px] md:max-h-board-desktop"
+    <PreviewContainer isPreview={isPreview}>
+      {isPreview ? (
+        <>
+          <PreviewProfile profilePreview={profilePreview} isPreview />
+          <PreviewLinks linksPreview={linksPreview} isPreview />
+        </>
+      ) : (
+        <PreviewMockup>
+          <PreviewProfile profilePreview={profilePreview} />
+          <PreviewLinks linksPreview={linksPreview} />
+        </PreviewMockup>
       )}
-    >
-      <PreviewMockup>
-        <PreviewProfile profilePreview={profilePreview && profilePreview} />
-
-        <PreviewLinks linksPreview={linksPreview} />
-      </PreviewMockup>
-    </div>
+    </PreviewContainer>
   );
 };

@@ -3,12 +3,14 @@ import Image from "next/image";
 import { selectOptions } from "../../modules/links/components/LinksGenerator/data";
 import { previewOptions } from "./data";
 import type { Links } from "@/app/_stores/preview.store";
+import Link from "next/link";
 
 type Props = {
   linksPreview: Links[] | undefined;
+  isPreview?: boolean;
 };
 
-export const PreviewLinks = ({ linksPreview }: Props) => {
+export const PreviewLinks = ({ linksPreview, isPreview }: Props) => {
   const skeletonCount = Math.max(
     0,
     5 - (linksPreview ? linksPreview.length : 0)
@@ -31,10 +33,13 @@ export const PreviewLinks = ({ linksPreview }: Props) => {
   return (
     <div className="flex flex-col gap-5">
       {linksPreview?.map((link) => (
-        <div
+        <Link
+          href={link.url}
+          target="_blank"
           key={link.id}
           className={clsx(
-            "w-[237px] h-11 flex justify-between items-center rounded-lg px-4"
+            "flex justify-between items-center rounded-lg px-4",
+            isPreview ? "w-full h-14" : "w-[237px] h-11"
           )}
           style={{
             backgroundColor: handleBgColor(link.platform),
@@ -69,12 +74,19 @@ export const PreviewLinks = ({ linksPreview }: Props) => {
             height={20}
             alt="arrow-right"
           />
-        </div>
+        </Link>
       ))}
 
-      {[...Array(skeletonCount)].map((_, index) => (
-        <div key={index} className="w-[237px] h-11 bg-[#EEE] rounded-lg" />
-      ))}
+      {!isPreview &&
+        [...Array(skeletonCount)].map((_, index) => (
+          <div
+            key={index}
+            className={clsx(
+              "bg-[#EEE] rounded-lg",
+              isPreview ? "w-full h-14" : "w-[237px] h-11"
+            )}
+          />
+        ))}
     </div>
   );
 };

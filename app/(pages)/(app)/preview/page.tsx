@@ -1,7 +1,5 @@
+import { Preview } from "@/app/_components/layouts/Preview";
+
 export default function PreviewPage() {
-  return (
-    <div>
-      <h1>Preview Page</h1>
-    </div>
-  );
+  return <Preview isPreview />;
 }

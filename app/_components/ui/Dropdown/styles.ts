@@ -2,8 +2,10 @@ export const CustomStyle = {
   control: (base: any, state: any) => ({
     ...base,
     borderColor: state.isFocused ? "#633CFF" : "#D9D9D9",
+    minHeight: "48px",
     borderRadius: "8px",
     boxShadow: "none",
+    padding: "0 4px",
     ":hover": {
       ...base[":hover"],
       border: "1px solid #633CFF",

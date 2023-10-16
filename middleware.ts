@@ -8,7 +8,10 @@ export async function middleware(req: NextRequest) {
   await supabase.auth.getSession();
 
   // If the user is not logged in, redirect to the sign in page
-  if (req.nextUrl.pathname.startsWith(URL_CONSTANT.BOARD)) {
+  if (
+    req.nextUrl.pathname.startsWith(URL_CONSTANT.BOARD) ||
+    req.nextUrl.pathname === URL_CONSTANT.PREVIEW
+  ) {
     const {
       data: { session },
     } = await supabase.auth.getSession();

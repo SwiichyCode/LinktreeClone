@@ -1,5 +1,7 @@
+import { PageLayout } from "@/app/_components/container/PageLayout";
+import { MainLayout } from "@/app/_components/container/MainLayout";
+import { HeaderBoard } from "@/app/_components/layouts/Header/HeaderBoard";
 import { Preview } from "@/app/_components/layouts/Preview";
-import clsx from "clsx";
 
 type Props = {
   children: React.ReactNode;
@@ -7,14 +9,12 @@ type Props = {
 
 export default function Layout({ children }: Props) {
   return (
-    <main
-      className={clsx(
-        "flex min-h-board-mobile gap-6 m-4",
-        "md:min-h-board-desktop md:m-6"
-      )}
-    >
-      <Preview />
-      {children}
-    </main>
+    <PageLayout>
+      <HeaderBoard />
+      <MainLayout>
+        <Preview />
+        {children}
+      </MainLayout>
+    </PageLayout>
   );
 }

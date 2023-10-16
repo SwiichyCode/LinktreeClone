@@ -6,6 +6,6 @@ export const URL_CONSTANT = {
   BOARD: "/board",
   LINKS: "/board/links",
   PROFILE: "/board/profile",
-  PREVIEW: "/board/preview",
+  PREVIEW: "/preview",
   VIEW: "/view",
 };
