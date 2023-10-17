@@ -17,7 +17,7 @@ export const HeaderPreview = ({ userId }: Props) => {
 
   const handleShareLink = () => {
     navigator.clipboard.writeText(
-      `${process.env.NEXT_PUBLIC_SITE_URL!}/view/?user=${userId}`
+      `${process.env.NEXT_PUBLIC_SITE_URL!}/profile/?user=${userId}`
     );
 
     setSubmitted(true);

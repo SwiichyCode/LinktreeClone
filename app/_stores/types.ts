@@ -10,3 +10,12 @@ export type Profile = {
   lastname: string;
   email: string;
 };
+
+export type Data = {
+  id: string;
+  username: string;
+  links: Link[];
+  firstname: string;
+  lastname: string;
+  email: string;
+};
