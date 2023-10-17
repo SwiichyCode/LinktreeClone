@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useDataStore } from "@/app/_stores/data.store";
+import { usePreviewStore } from "../_stores/preview.store";
 import { getStatusString, FetchStatus } from "@/app/_utils/getStatusString";
 import Link_service from "@/app/_services/link.client.service";
 
@@ -13,6 +14,7 @@ export const useFetchData = ({ userId }: Props) => {
   const [status, setStatus] = useState<FetchStatus>(FetchStatus.Idle);
   const [error, setError] = useState<string | null>(null);
   const { links, setData, setLinks, setProfile } = useDataStore();
+  // const { setLinkPreviews, setProfilePreview } = usePreviewStore();
 
   useEffect(() => {
     const fetchData = async () => {

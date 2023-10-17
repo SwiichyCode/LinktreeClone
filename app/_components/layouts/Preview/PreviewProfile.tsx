@@ -1,7 +1,7 @@
 import { PreviewEmail } from "./PreviewEmail";
 import { PreviewFullname } from "./PreviewFullname";
 import { PreviewPicture } from "./PreviewPicture";
-import type { Profile } from "@/app/_stores/data.store";
+import type { Profile } from "@/app/_stores/types";
 
 type Props = {
   profilePreview: Profile | undefined;

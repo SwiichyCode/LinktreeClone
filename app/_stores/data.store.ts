@@ -1,19 +1,7 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 import { STORAGE_CONSTANT } from "@/app/_constants/storage.constant";
-
-export type Link = {
-  id: string;
-  platform: string;
-  url: string;
-};
-
-export type Profile = {
-  username: string;
-  firstname: string;
-  lastname: string;
-  email: string;
-};
+import type { Link, Profile } from "./types";
 
 interface ILinkStore {
   links: Link[];
@@ -39,6 +27,7 @@ export const useDataStore = create<ILinkStore>()(
     }),
     {
       name: STORAGE_CONSTANT.DATA,
+      storage: createJSONStorage(() => sessionStorage),
       skipHydration: true,
     }
   )

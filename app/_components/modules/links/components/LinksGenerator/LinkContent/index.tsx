@@ -8,7 +8,7 @@ import { LinkHeader } from "../LinkHeader";
 import { FormCard } from "@/app/_components/ui/Form/FormCard";
 import { Dropdown } from "@/app/_components/ui/Dropdown";
 import { TextField } from "@/app/_components/ui/TextField";
-import type { Link } from "@/app/_stores/data.store";
+import type { Link } from "@/app/_stores/types";
 import type { FormValues } from "../../FormLinks";
 
 type Props = {

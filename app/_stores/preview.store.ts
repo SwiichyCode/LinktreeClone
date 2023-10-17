@@ -1,25 +1,14 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { STORAGE_CONSTANT } from "../_constants/storage.constant";
-
-export interface Links {
-  id: string;
-  platform: string;
-  url: string;
-}
-
-interface Profile {
-  username: string;
-  firstname: string;
-  lastname: string;
-  email: string;
-}
+import type { Link, Profile } from "./types";
 
 interface IPreviewStore {
-  linksPreview: Links[];
+  linksPreview: Link[];
   profilePreview: Profile;
-  setLinkPreviews: (previews: Links[]) => void;
-  setProfilePreview: (preview: Profile) => void;
+  setPreview: (linksPreview: Link[], profilePreview: Profile) => void;
+  setLinkPreviews: (linksPreview: Link[]) => void;
+  setProfilePreview: (profilePreview: Profile) => void;
 }
 
 export const usePreviewStore = create<IPreviewStore>()(
@@ -32,11 +21,14 @@ export const usePreviewStore = create<IPreviewStore>()(
         lastname: "",
         email: "",
       },
-      setLinkPreviews: (previews) => set(() => ({ linksPreview: previews })),
-      setProfilePreview: (preview) => set(() => ({ profilePreview: preview })),
+      setPreview: (linksPreview, profilePreview) =>
+        set(() => ({ linksPreview, profilePreview })),
+      setLinkPreviews: (linksPreview) => set(() => ({ linksPreview })),
+      setProfilePreview: (profilePreview) => set(() => ({ profilePreview })),
     }),
     {
       name: STORAGE_CONSTANT.PREVIEW,
+      skipHydration: false,
       getStorage: () => sessionStorage,
     }
   )

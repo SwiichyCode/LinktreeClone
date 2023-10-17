@@ -1,9 +1,9 @@
 import clsx from "clsx";
+import Link from "next/link";
 import Image from "next/image";
 import { selectOptions } from "../../modules/links/components/LinksGenerator/data";
 import { previewOptions } from "./data";
-import type { Links } from "@/app/_stores/preview.store";
-import Link from "next/link";
+import type { Link as Links } from "@/app/_stores/types";
 
 type Props = {
   linksPreview: Links[] | undefined;

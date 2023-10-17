@@ -1,5 +1,5 @@
 import { Button } from "@/app/_components/ui/Button";
-import type { Link, Profile } from "@/app/_stores/data.store";
+import type { Link, Profile } from "@/app/_stores/types";
 
 type Props = {
   state: "links" | "profile";
@@ -23,7 +23,7 @@ export const FormSave = ({
       return true;
     }
 
-    const isEqual = linksValues?.some((value, index) => {
+    const isEqual = linksValues?.every((value, index) => {
       return (
         value.url === links?.[index]?.url &&
         value.platform === links?.[index]?.platform

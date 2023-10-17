@@ -10,7 +10,7 @@ import { useStore } from "@/app/_stores/useStore";
 import { LinksGenerator } from "../LinksGenerator";
 import { FormSave } from "../../../../ui/Form/FormSave";
 import { FormEmpty } from "../../../../ui/Form/FormEmpty";
-import type { Link } from "@/app/_stores/data.store";
+import type { Link } from "@/app/_stores/types";
 import { FormDataSchema } from "./schema";
 import { UpdateLinkAction } from "../../server/UpdateLinkAction";
 import { Notification } from "@/app/_components/ui/Notification";
@@ -69,7 +69,15 @@ export const FormLinks = ({ userId }: Props) => {
 
   useEffect(() => {
     const subscription = watch((value) => {
-      setLinkPreviews(value.links as Link[]);
+      const links = value?.links?.map((link) => {
+        return {
+          id: link?.id,
+          platform: link?.platform,
+          url: link?.url,
+        };
+      });
+
+      setLinkPreviews(links as Link[]);
     });
 
     return () => subscription.unsubscribe();

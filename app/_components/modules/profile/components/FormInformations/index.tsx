@@ -2,7 +2,7 @@ import { FormCard } from "@/app/_components/ui/Form/FormCard";
 import { TextField } from "@/app/_components/ui/TextField";
 import { FormValues } from "../FormProfile";
 import type { UseFormRegister } from "react-hook-form";
-import type { Profile } from "@/app/_stores/data.store";
+import type { Profile } from "@/app/_stores/types";
 
 type Props = {
   register: UseFormRegister<FormValues>;

@@ -1,12 +1,12 @@
 import { cookies } from "next/headers";
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
-import type { Links } from "../_stores/preview.store";
+import type { Link } from "../_stores/types";
 
 const supabase = createServerActionClient({ cookies });
 
 interface UpdateLinksType {
   id: string | undefined;
-  links: Links[];
+  links: Link[];
 }
 
 interface UpdateProfileType {

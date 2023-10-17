@@ -1,3 +1,4 @@
+"use client";
 import { PageLayout } from "@/app/_components/container/PageLayout";
 import { MainLayout } from "@/app/_components/container/MainLayout";
 import { HeaderBoard } from "@/app/_components/layouts/Header/HeaderBoard";

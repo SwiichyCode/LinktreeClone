@@ -1,10 +1,11 @@
 "use client";
+
 import { usePreviewStore } from "@/app/_stores/preview.store";
 import { PreviewMockup } from "./PreviewMockup";
 import { PreviewProfile } from "./PreviewProfile";
 import { PreviewLinks } from "./PreviewLinks";
-import { useStore } from "@/app/_stores/useStore";
 import { PreviewContainer } from "./PreviewContainer";
+import { useStore } from "@/app/_stores/useStore";
 
 type Props = {
   isPreview?: boolean;
