@@ -57,7 +57,6 @@ export const AuthForm = ({ state }: Props) => {
       <div className="flex flex-col gap-2">
         <TextField
           name="password"
-          type="password"
           placeholder={
             isSignup ? "At least .8 characters" : "Enter your password"
           }
@@ -65,6 +64,7 @@ export const AuthForm = ({ state }: Props) => {
           iconUrl="/icon-password.svg"
           register={register}
           error={errors.password?.message}
+          isPassword
         />
         {!isSignup && (
           <Link
@@ -79,7 +79,6 @@ export const AuthForm = ({ state }: Props) => {
       {isSignup && (
         <TextField
           name="confirm"
-          type="password"
           placeholder={
             isSignup ? "At least .8 characters" : "Enter your password"
           }
@@ -87,6 +86,7 @@ export const AuthForm = ({ state }: Props) => {
           iconUrl="/icon-password.svg"
           register={register}
           error={errors.confirm?.message}
+          isPassword
         />
       )}
 

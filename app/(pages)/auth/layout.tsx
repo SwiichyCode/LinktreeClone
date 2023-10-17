@@ -7,7 +7,10 @@ type Props = {
 export default function Layout({ children }: Props) {
   return (
     <div
-      className={clsx("flex justify-center h-screen p-8", "sm:items-center")}
+      className={clsx(
+        "flex justify-center h-screen p-8 bg-primary",
+        "sm:items-center"
+      )}
     >
       {children}
     </div>

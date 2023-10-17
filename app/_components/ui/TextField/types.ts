@@ -1,9 +1,10 @@
-import { UseFormRegister, FieldValues } from "react-hook-form";
+import { UseFormRegister } from "react-hook-form";
 
-interface InputOptions {
+export interface TextFieldOptions {
+  labelText: string;
   iconUrl?: string;
-  register: UseFormRegister<FieldValues>;
-  error: any;
+  register: UseFormRegister<any>;
+  error?: any;
   isProfile?: boolean;
   isPassword?: boolean;
 }
@@ -12,4 +13,4 @@ export type InputProps = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 > &
-  InputOptions;
+  TextFieldOptions;

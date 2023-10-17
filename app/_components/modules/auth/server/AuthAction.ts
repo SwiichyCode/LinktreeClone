@@ -46,9 +46,9 @@ export const AuthAction = async ({ formData, state }: Props) => {
 
     if (data && !isSignup) {
       const cookieStore = cookies();
-      const oneDay = 24 * 60 * 60 * 1000;
+      const maxAge = 1000 * 60 * 60 * 24 * 365 + 1000 * 60 * 60 * 24 * 30; // 1 year + 1 month
       cookieStore.set("user_id", data?.user?.id as string, {
-        expires: Date.now() + oneDay,
+        expires: Date.now() + maxAge,
       });
     }
 

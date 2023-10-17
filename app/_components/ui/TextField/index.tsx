@@ -1,24 +1,18 @@
 import clsx from "clsx";
-import { UseFormRegister } from "react-hook-form";
 import { Label } from "../Label";
 import { Input } from "../Input";
-
-interface TextFieldOptions {
-  labelText: string;
-  iconUrl?: string;
-  register: UseFormRegister<any>;
-  error?: any;
-  isProfile?: boolean;
-}
-
-export type InputProps = React.DetailedHTMLProps<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
-> &
-  TextFieldOptions;
+import type { InputProps } from "./types";
 
 export const TextField = (props: InputProps) => {
-  const { labelText, iconUrl, register, error, isProfile, ...rest } = props;
+  const {
+    labelText,
+    iconUrl,
+    register,
+    error,
+    isProfile,
+    isPassword,
+    ...rest
+  } = props;
 
   return (
     <div
@@ -39,6 +33,7 @@ export const TextField = (props: InputProps) => {
         register={register}
         error={error}
         isProfile={isProfile}
+        isPassword={isPassword}
         {...rest}
       />
     </div>
