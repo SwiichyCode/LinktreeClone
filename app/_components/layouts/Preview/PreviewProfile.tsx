@@ -1,7 +1,8 @@
+import { usePicture } from "@/app/_hooks/usePicture";
 import { PreviewEmail } from "./PreviewEmail";
 import { PreviewFullname } from "./PreviewFullname";
 import { PreviewPicture } from "./PreviewPicture";
-import type { Profile, Data } from "@/app/_stores/types";
+import type { Profile } from "@/app/_stores/types";
 
 type Props = {
   profilePreview: Profile | undefined;
@@ -9,7 +10,11 @@ type Props = {
 };
 
 export const PreviewProfile = ({ profilePreview, isPreview }: Props) => {
-  const { username, firstname, lastname, email } = profilePreview || {};
+  const { picture, username, firstname, lastname, email } =
+    profilePreview || {};
+  const { pictureURL } = usePicture({ picture });
+
+  console.log(pictureURL);
 
   const handleFullname = () => {
     if (!firstname && !lastname) return "";
@@ -18,8 +23,8 @@ export const PreviewProfile = ({ profilePreview, isPreview }: Props) => {
   };
 
   return (
-    <div className="flex flex-col items-center mb-14">
-      <PreviewPicture isPreview={isPreview} />
+    <div className="flex flex-col items-center mb-8">
+      <PreviewPicture isPreview={isPreview} pictureURL={pictureURL} />
       <div className="flex flex-col items-center gap-2">
         <PreviewFullname fullname={handleFullname()} isPreview={isPreview} />
         <PreviewEmail email={email} isPreview={isPreview} />

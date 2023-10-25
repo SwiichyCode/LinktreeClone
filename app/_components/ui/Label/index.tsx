@@ -2,7 +2,8 @@ import clsx from "clsx";
 import type { LabelProps } from "./types";
 
 export const Label = (props: LabelProps) => {
-  const { labelText, error, isProfile, ...rest } = props;
+  const { labelText, error, isProfile, isLabelPicture, className, ...rest } =
+    props;
 
   return (
     <div
@@ -11,7 +12,14 @@ export const Label = (props: LabelProps) => {
         isProfile && "gap-2"
       )}
     >
-      <label className="text-darkgrey text-sm font-medium" {...rest}>
+      <label
+        className={clsx(
+          "font-medium",
+          isLabelPicture ? "text-grey text-base" : "text-darkgrey text-sm",
+          className
+        )}
+        {...rest}
+      >
         {labelText}
       </label>
 

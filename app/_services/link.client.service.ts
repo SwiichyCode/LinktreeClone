@@ -14,7 +14,7 @@ const getLinks = async (id: string | undefined) => {
 const getData = async (id: string | undefined) => {
   const { data, error } = await supabase
     .from("user")
-    .select(`id, username, links, firstname, lastname, email`)
+    .select(`id, picture, username, links, firstname, lastname, email`)
     .eq("id", id);
 
   return { data, error };

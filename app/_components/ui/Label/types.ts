@@ -1,7 +1,9 @@
 interface LabelOptions {
   labelText: string;
-  error: any;
+  error?: any;
   isProfile?: boolean;
+  isLabelPicture?: boolean;
+  className?: string;
 }
 
 export type LabelProps = React.DetailedHTMLProps<

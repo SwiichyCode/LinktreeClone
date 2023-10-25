@@ -14,7 +14,7 @@ export const useFetchData = ({ userId }: Props) => {
   const [status, setStatus] = useState<FetchStatus>(FetchStatus.Idle);
   const [error, setError] = useState<string | null>(null);
   const { links, setData, setLinks, setProfile } = useDataStore();
-  // const { setLinkPreviews, setProfilePreview } = usePreviewStore();
+  const { setLinkPreviews, setProfilePreview } = usePreviewStore();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +27,7 @@ export const useFetchData = ({ userId }: Props) => {
         const response = data?.[0];
         const links = response?.links;
         const profile = {
+          picture: response?.picture,
           username: response?.username,
           firstname: response?.firstname,
           lastname: response?.lastname,
@@ -34,6 +35,8 @@ export const useFetchData = ({ userId }: Props) => {
         };
 
         setData(links, profile);
+        setLinkPreviews(links);
+        setProfilePreview(profile);
 
         setStatus(FetchStatus.Success);
       } catch (error) {

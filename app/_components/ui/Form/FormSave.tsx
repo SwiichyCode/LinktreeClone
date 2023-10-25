@@ -39,6 +39,7 @@ export const FormSave = ({
     }
 
     return (
+      profileValues.picture === profile.picture &&
       profileValues.username === profile.username &&
       profileValues.firstname === profile.firstname &&
       profileValues.lastname === profile.lastname &&

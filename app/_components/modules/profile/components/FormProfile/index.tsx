@@ -14,6 +14,7 @@ import { FormSave } from "@/app/_components/ui/Form/FormSave";
 import { Notification } from "@/app/_components/ui/Notification";
 import { FormInformations } from "../FormInformations";
 import type { Profile } from "@/app/_stores/types";
+import { FormPicture } from "../FormPicture";
 
 export type FormValues = z.infer<typeof FormDataSchema>;
 
@@ -43,15 +44,16 @@ export const FormProfile = ({ userId }: Props) => {
   });
 
   const onSubmit = handleSubmit((data) => {
-    startTransition(() => {
-      UpdateProfileAction({
-        formData: data,
-      });
-    });
+    const reader = new FileReader();
+    const base64 = reader.readAsDataURL(data.picture[0]);
 
+    // startTransition(() => {
+    //   UpdateProfileAction({
+    //     formData: data,
+    //   });
+    // });
     setProfile(data);
     setSubmitted(true);
-
     !isPending && setTimeout(() => setSubmitted(false), 3000);
   });
 
@@ -60,6 +62,7 @@ export const FormProfile = ({ userId }: Props) => {
   useEffect(() => {
     const subscription = watch((value) => {
       const profile = {
+        picture: value.picture,
         username: value.username,
         firstname: value.firstname,
         lastname: value.lastname,
@@ -79,6 +82,11 @@ export const FormProfile = ({ userId }: Props) => {
 
   return (
     <FormWrapper onSubmit={onSubmit}>
+      <FormPicture
+        register={register}
+        profile={profilePreview}
+        errors={errors}
+      />
       <FormInformations register={register} profile={profile} errors={errors} />
 
       <FormSave state="profile" profile={profile} profileValues={values} />
