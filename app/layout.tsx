@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Instrument_Sans({ subsets: ["latin"] });
 
@@ -16,7 +17,10 @@ type Props = {
 export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

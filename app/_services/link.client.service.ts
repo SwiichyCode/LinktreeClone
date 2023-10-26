@@ -20,9 +20,18 @@ const getData = async (id: string | undefined) => {
   return { data, error };
 };
 
+const getAllProfile = async () => {
+  const { data, error } = await supabase
+    .from("user")
+    .select(`id, picture, username, links, firstname, lastname, email`);
+
+  return { data, error };
+};
+
 const Link_service = {
   getLinks,
   getData,
+  getAllProfile,
 };
 
 export default Link_service;

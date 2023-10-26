@@ -5,11 +5,11 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      {
-        source: "/",
-        destination: "/board/links",
-        permanent: false,
-      },
+      // {
+      //   source: "/",
+      //   destination: "/board/links",
+      //   permanent: false,
+      // },
     ];
   },
   reactStrictMode: false,
