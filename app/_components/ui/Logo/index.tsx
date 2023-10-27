@@ -13,7 +13,7 @@ const handleStyle = (from: Props["from"]) => {
     case "auth":
       return "w-48 h-10 bg-logo-desktop";
     case "landing":
-      return "w-8 h-8 md:w-48 md:h-10 bg-logo-mobile md:bg-logo-desktop";
+      return "w-48 h-10 bg-logo-desktop";
   }
 };
 

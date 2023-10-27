@@ -10,7 +10,7 @@ export const Navigation = () => {
           <li
             key={index}
             className={clsx(
-              "inline-block px-4 py-2 text-base font-medium transition-colors duration-200 hover:text-purple",
+              "hidden md:inline-block px-4 py-2 text-base font-medium transition-colors duration-200 hover:text-purple",
               "md:px-6 md:py-0 md:text-base"
             )}
           >

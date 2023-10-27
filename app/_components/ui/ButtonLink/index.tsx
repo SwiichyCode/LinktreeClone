@@ -19,7 +19,7 @@ type HandleLinkProps = {
 
 const ButtonWithLink = ({ children, href }: HandleLinkProps) => {
   return href ? (
-    <Link className="max-w-fit" href={href}>
+    <Link className="w-full md:max-w-fit" href={href}>
       {children}
     </Link>
   ) : (
@@ -31,13 +31,13 @@ export const ButtonLink = (props: Props) => {
   const { href, text, iconSrc, variant = "secondary", from, ...rest } = props;
   const buttonMerged =
     from === "landing"
-      ? "h-[42px] md:h-[54px] px-[15px] md:px-[32px]"
+      ? "w-full h-[42px] md:h-[54px] px-[15px] md:px-[32px]"
       : "h-[42px] md:h-[46px] px-[15px] md:px-[27px]";
 
   return (
     <ButtonWithLink href={href}>
       <Button
-        className={clsx("flex items-center gap-2", buttonMerged)}
+        className={clsx("flex justify-center items-center gap-2", buttonMerged)}
         variant={variant}
         {...rest}
       >
@@ -50,7 +50,9 @@ export const ButtonLink = (props: Props) => {
             alt={text}
           />
         )}
-        <span className="hidden md:block">{text}</span>
+        <span className={from === "landing" ? "block" : "hidden md:block"}>
+          {text}
+        </span>
         {iconSrc && from === "landing" && (
           <Image src={iconSrc} width={20} height={20} alt={text} />
         )}

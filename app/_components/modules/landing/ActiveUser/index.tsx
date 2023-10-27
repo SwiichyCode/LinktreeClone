@@ -7,7 +7,7 @@ export const ActiveUser = async () => {
   const activeUser = data?.length;
 
   return (
-    <article className="w-full max-w-sm flex flex-col gap-12">
+    <article className="w-full max-w-sm flex flex-col gap-8 md:gap-12">
       <p className="font-medium">
         Boost Your Online Presence with the Ultimate Link Generation Tool.
         Create, Share, and Optimize Your Links for Maximum Impact.
@@ -17,7 +17,7 @@ export const ActiveUser = async () => {
         <Counter label="Visitors" number={0} />
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4">
         {Array.from({ length: 4 }).map((_, index) => (
           <Image
             key={index}
