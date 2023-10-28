@@ -27,10 +27,10 @@ export const PreviewSlidesShow = () => {
   };
 
   return (
-    <div
+    <section
       className={clsx(
-        "relative flex justify-center items-center m-auto rounded-3xl lg:bg-[#F5F5F7] py-5 md:py-12",
-        "w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl"
+        "relative flex justify-center items-center m-auto rounded-3xl mb-14",
+        "w-full md:max-w-2xl lg:max-w-3xl xl:max-w-6xl md:mb-14 lg:mb-32 lg:bg-[#F5F5F7] lg:p-12"
       )}
     >
       <PreviewController
@@ -44,6 +44,6 @@ export const PreviewSlidesShow = () => {
         setCurrentImageIndex={setCurrentImageIndex}
         interval={10000}
       />
-    </div>
+    </section>
   );
 };
