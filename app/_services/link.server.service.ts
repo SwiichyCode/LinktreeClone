@@ -12,6 +12,8 @@ interface UpdateLinksType {
 interface UpdateProfileType {
   id: string | undefined;
   profile: {
+    // picture: any;
+    pictureFromStorage: string;
     username: string;
     firstname: string;
     lastname: string;
@@ -32,6 +34,8 @@ const updateProfile = async ({ id, profile }: UpdateProfileType) => {
   const { data, error } = await supabase
     .from("user")
     .update({
+      // picture: profile.picture,
+      pictureFromStorage: profile.pictureFromStorage,
       username: profile.username,
       firstname: profile.firstname,
       lastname: profile.lastname,
@@ -42,9 +46,33 @@ const updateProfile = async ({ id, profile }: UpdateProfileType) => {
   return { data, error };
 };
 
+const uploadProfilePictureFromStorage = async (id: string, file: any) => {
+  const { data, error } = await supabase.storage
+    .from("avatars")
+    .upload(`public/${id}`, file, {
+      cacheControl: "3600",
+      upsert: false,
+    });
+
+  return { data, error };
+};
+
+const updateProfilePictureFromStorage = async (id: string, file: any) => {
+  const { data, error } = await supabase.storage
+    .from("avatars")
+    .update(`public/${file.name}`, file, {
+      cacheControl: "3600",
+      upsert: true,
+    });
+
+  return { data, error };
+};
+
 const Link_service = {
   updateLinks,
   updateProfile,
+  uploadProfilePictureFromStorage,
+  updateProfilePictureFromStorage,
 };
 
 export default Link_service;

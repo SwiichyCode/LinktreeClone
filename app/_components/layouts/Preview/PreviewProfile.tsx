@@ -6,15 +6,20 @@ import type { Profile } from "@/app/_stores/types";
 
 type Props = {
   profilePreview: Profile | undefined;
+  isProfile?: boolean;
   isPreview?: boolean;
 };
 
-export const PreviewProfile = ({ profilePreview, isPreview }: Props) => {
-  const { picture, username, firstname, lastname, email } =
+export const PreviewProfile = ({
+  profilePreview,
+  isProfile,
+  isPreview,
+}: Props) => {
+  const { picture, pictureFromStorage, firstname, lastname, email } =
     profilePreview || {};
   const { pictureURL } = usePicture({ picture });
 
-  console.log(pictureURL);
+  const pictureToDisplay = pictureURL || pictureFromStorage;
 
   const handleFullname = () => {
     if (!firstname && !lastname) return "";
@@ -24,7 +29,10 @@ export const PreviewProfile = ({ profilePreview, isPreview }: Props) => {
 
   return (
     <div className="flex flex-col items-center mb-8">
-      <PreviewPicture isPreview={isPreview} pictureURL={pictureURL} />
+      <PreviewPicture
+        isPreview={isPreview}
+        pictureURL={isProfile ? pictureFromStorage : pictureToDisplay}
+      />
       <div className="flex flex-col items-center gap-2">
         <PreviewFullname fullname={handleFullname()} isPreview={isPreview} />
         <PreviewEmail email={email} isPreview={isPreview} />

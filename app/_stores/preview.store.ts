@@ -16,6 +16,8 @@ export const usePreviewStore = create<IPreviewStore>()(
     (set) => ({
       linksPreview: [],
       profilePreview: {
+        picture: "",
+        pictureFromStorage: "",
         username: "",
         firstname: "",
         lastname: "",

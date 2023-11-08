@@ -20,8 +20,24 @@ export const Preview = ({ isPreview, isProfile, data }: Props) => {
     (state) => state.profilePreview
   );
 
-  const { username, firstname, lastname, email, links } = data?.[0] || {};
-  const profile = { username, firstname, lastname, email } as Profile;
+  const {
+    picture,
+    pictureFromStorage,
+    username,
+    firstname,
+    lastname,
+    email,
+    links,
+  } = data?.[0] || {};
+
+  const profile = {
+    picture,
+    pictureFromStorage,
+    username,
+    firstname,
+    lastname,
+    email,
+  } as Profile;
 
   return (
     <PreviewContainer isPreview={isPreview}>
@@ -29,6 +45,7 @@ export const Preview = ({ isPreview, isProfile, data }: Props) => {
         <>
           <PreviewProfile
             profilePreview={isProfile ? profile : profilePreview}
+            isProfile={isProfile}
             isPreview
           />
           <PreviewLinks

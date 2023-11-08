@@ -19,5 +19,5 @@ export const LogoutAction = async () => {
     );
   }
 
-  return redirect(`${requestUrl.origin + URL_CONSTANT.HOME}`);
+  return redirect(`${requestUrl.origin + URL_CONSTANT.SIGN_IN}`);
 };

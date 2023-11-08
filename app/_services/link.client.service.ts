@@ -14,7 +14,9 @@ const getLinks = async (id: string | undefined) => {
 const getData = async (id: string | undefined) => {
   const { data, error } = await supabase
     .from("user")
-    .select(`id, picture, username, links, firstname, lastname, email`)
+    .select(
+      `id, pictureFromStorage, username, links, firstname, lastname, email`
+    )
     .eq("id", id);
 
   return { data, error };
@@ -23,7 +25,20 @@ const getData = async (id: string | undefined) => {
 const getAllProfile = async () => {
   const { data, error } = await supabase
     .from("user")
-    .select(`id, picture, username, links, firstname, lastname, email`);
+    .select(
+      `id, pictureFromStorage, username, links, firstname, lastname, email`
+    );
+
+  return { data, error };
+};
+
+const uploadProfilePictureFromStorage = async (file: any) => {
+  const { data, error } = await supabase.storage
+    .from("avatars")
+    .upload(`public/${file.name}`, file, {
+      cacheControl: "3600",
+      upsert: false,
+    });
 
   return { data, error };
 };
@@ -32,6 +47,7 @@ const Link_service = {
   getLinks,
   getData,
   getAllProfile,
+  uploadProfilePictureFromStorage,
 };
 
 export default Link_service;

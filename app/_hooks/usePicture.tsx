@@ -5,11 +5,18 @@ type Props = {
 };
 
 export const usePicture = ({ picture }: Props) => {
-  const [pictureURL, setPictureURL] = useState<any>();
+  const [pictureURL, setPictureURL] = useState<string | null>(null);
 
   useEffect(() => {
-    if (picture?.[0] instanceof File || picture?.[0] instanceof Blob) {
-      setPictureURL(URL.createObjectURL(picture?.[0]));
+    if (picture && picture.length > 0) {
+      const file = picture[0];
+      const objectURL = URL.createObjectURL(file);
+      setPictureURL(objectURL);
+
+      // Assurez-vous de nettoyer l'URL de l'objet lorsqu'il n'est plus nécessaire
+      return () => URL.revokeObjectURL(objectURL);
+    } else {
+      setPictureURL(null);
     }
   }, [picture]);
 

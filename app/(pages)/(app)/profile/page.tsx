@@ -11,5 +11,7 @@ export default async function ProfilePage({ searchParams }: Props) {
   const { user } = searchParams || {};
   const data = await Link_service.getData(user as string);
 
+  console.log(data);
+
   return <Preview isPreview isProfile {...data} />;
 }

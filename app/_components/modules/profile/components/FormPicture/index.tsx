@@ -19,7 +19,7 @@ export const FormPicture = ({ register, profile, errors }: Props) => {
       <ImageField
         labelText="Profile picture"
         name="picture"
-        pictureURL={pictureURL}
+        pictureURL={pictureURL || profile?.pictureFromStorage}
         register={register}
         error={errors.picture?.message}
       />

@@ -26,9 +26,14 @@ export const FormProfile = ({ userId }: Props) => {
   const [isPending, startTransition] = useTransition();
   const [submitted, setSubmitted] = useState(false);
   const profile = useStore(useDataStore, (state) => state.profile);
+  const profilePreview = useStore(
+    usePreviewStore,
+    (state) => state.profilePreview
+  );
   const { setProfile } = useDataStore();
-  const { profilePreview, setProfilePreview } = usePreviewStore();
+  const { setProfilePreview } = usePreviewStore();
   const { status, error } = useFetchData({ userId });
+
   const {
     register,
     handleSubmit,
@@ -39,19 +44,31 @@ export const FormProfile = ({ userId }: Props) => {
     resolver: zodResolver(FormDataSchema),
     reValidateMode: "onChange",
     defaultValues: useMemo(() => {
-      return profile;
+      return {
+        picture: profile?.picture,
+        pictureFromStorage: profile?.pictureFromStorage,
+        username: profile?.username,
+        firstname: profile?.firstname,
+        lastname: profile?.lastname,
+        email: profile?.email,
+      };
     }, [profile]),
   });
 
   const onSubmit = handleSubmit((data) => {
-    const reader = new FileReader();
-    const base64 = reader.readAsDataURL(data.picture[0]);
+    const formPicture = new FormData();
+    formPicture.append("picture", data.picture[0]);
 
-    // startTransition(() => {
-    //   UpdateProfileAction({
-    //     formData: data,
-    //   });
-    // });
+    startTransition(() => {
+      UpdateProfileAction({
+        formData: {
+          ...data,
+          picture: formPicture,
+        },
+      });
+    });
+
+    // setProfilePreview(data);
     setProfile(data);
     setSubmitted(true);
     !isPending && setTimeout(() => setSubmitted(false), 3000);
@@ -61,14 +78,15 @@ export const FormProfile = ({ userId }: Props) => {
 
   useEffect(() => {
     const subscription = watch((value) => {
-      const profile = {
+      const data = {
         picture: value.picture,
+        pictureFromStorage: profile?.pictureFromStorage,
         username: value.username,
         firstname: value.firstname,
         lastname: value.lastname,
         email: value.email,
       };
-      setProfilePreview(profile as Profile);
+      setProfilePreview(data as Profile);
     });
 
     return () => subscription.unsubscribe();

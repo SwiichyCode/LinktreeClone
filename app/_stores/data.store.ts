@@ -17,6 +17,7 @@ export const useDataStore = create<ILinkStore>()(
       links: [],
       profile: {
         picture: "",
+        pictureFromStorage: "",
         username: "",
         firstname: "",
         lastname: "",
